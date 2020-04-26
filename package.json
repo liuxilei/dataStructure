@@ -1,0 +1,27 @@
+{
+  "name": "datastructure",
+  "version": "1.0.0",
+  "description": "javascript数据结构",
+  "main": "index.js",
+  "scripts": {
+    "commit": "git-cz"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/liuxilei/dataStructure.git"
+  },
+  "author": "liuxilei",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/liuxilei/dataStructure/issues"
+  },
+  "homepage": "https://github.com/liuxilei/dataStructure#readme",
+  "config": {
+    "commitizen": {
+      "path": "./node_modules/cz-conventional-changelog"
+    }
+  },
+  "devDependencies": {
+    "cz-conventional-changelog": "^3.1.0"
+  }
+}
