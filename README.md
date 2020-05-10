@@ -1,4 +1,4 @@
-# 数据结构(javaScript)
+# 数据结构(JavaScript)
 
 ## leetcode
 
@@ -15,3 +15,4 @@
 496|[Next Greater Element I(下一个更大元素 I)](./Stack/496/README.md)|
 232|[Implement Queue using Stacks(用栈实现队列)](./Stack/232/README.md)|
 844|[Backspace String Compare(比较含退格的字符串)](./Stack/844/README.md)|
+5404|[Build an Array With Stack Operations(用栈操作构建数组)](./Stack/5405/README.md)|
