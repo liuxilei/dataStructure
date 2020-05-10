@@ -1,0 +1,144 @@
+## Remove Outermost Parentheses
+
+A valid parentheses string is either empty `(""), "(" + A + ")"`, or `A + B`, where A and B are valid parentheses strings, and + represents string concatenation.  For example, `""`, `"()"`, `"(())()"`, and `"(()(()))"` are all valid parentheses strings.
+
+A valid parentheses string S is `primitive` if it is nonempty, and there does not exist a way to split it into `S = A+B`, with A and B nonempty valid parentheses strings.
+
+Given a valid parentheses string S, consider its primitive decomposition: `S = P_1 + P_2 + ... + P_k`, where `P_i` are primitive valid parentheses strings.
+
+Return S after removing the outermost parentheses of every primitive string in the primitive decomposition of `S`.
+
+**Example 1:**
+
+    Input: "(()())(())"
+    Output: "()()()"
+    Explanation: 
+    The input string is "(()())(())", with primitive decomposition "(()())" + "(())".
+    After removing outer parentheses of each part, this is "()()" + "()" = "()()()".
+
+**Example 2:**
+
+    Input: "(()())(())(()(()))"
+    Output: "()()()()(())"
+    Explanation: 
+    The input string is "(()())(())(()(()))", with primitive decomposition "(()())" + "(())" + "(()(()))".
+    After removing outer parentheses of each part, this is "()()" + "()" + "()(())" = "()()()()(())".
+
+**Example 3:**
+
+    Input: "()()"
+    Output: ""
+    Explanation: 
+    The input string is "()()", with primitive decomposition "()" + "()".
+    After removing outer parentheses of each part, this is "" + "" = "".
+ 
+
+**Note:**
+
+1. S.length <= 10000
+2. S[i] is "(" or ")"
+3. S is a valid parentheses string
+
+## 删除最外层的括号
+有效括号字符串为空 `("")`、`"(" + A + ")"` 或 `A + B`，其中 A 和 B 都是有效的括号字符串，`+` 代表字符串的连接。例如，`""`，`"()"`，`"(())()"` 和 `"(()(()))"` 都是有效的括号字符串。
+
+如果有效字符串 `S` 非空，且不存在将其拆分为 `S = A+B` 的方法，我们称其为`原语（primitive）`，其中 `A` 和 `B` 都是非空有效括号字符串。
+
+给出一个非空有效字符串 `S`，考虑将其进行原语化分解，使得：`S = P_1 + P_2 + ... + P_k`，其中 `P_i` 是有效括号字符串原语。
+
+对 `S` 进行原语化分解，删除分解中每个原语字符串的最外层括号，返回 `S` 。
+
+ 
+
+**示例 1：**
+
+    输入："(()())(())"
+    输出："()()()"
+    解释：
+    输入字符串为 "(()())(())"，原语化分解得到 "(()())" + "(())"，
+    删除每个部分中的最外层括号后得到 "()()" + "()" = "()()()"。
+
+**示例 2：**
+
+    输入："(()())(())(()(()))"
+    输出："()()()()(())"
+    解释：
+    输入字符串为 "(()())(())(()(()))"，原语化分解得到 "(()())" + "(())" + "(()(()))"，
+    删除每个部分中的最外层括号后得到 "()()" + "()" + "()(())" = "()()()()(())"。
+
+**示例 3：**
+
+    输入："()()"
+    输出：""
+    解释：
+    输入字符串为 "()()"，原语化分解得到 "()" + "()"，
+    删除每个部分中的最外层括号后得到 "" + "" = ""。
+ 
+
+**提示：**
+
+1. S.length <= 10000
+2. S[i] 为 "(" 或 ")"
+3. S 是一个有效括号字符串
+
+### My Solution
+
+#### 思路
+定义一个栈，依次向栈内塞元素，每当（）成对的时候取出，判定栈是否为空，如果为空，即收集到一个原语，然后继续下去。
+
+```javascript
+/**
+ * @param {string} S
+ * @return {string}
+ */
+var removeOuterParentheses = function (S) {
+    let stack = [];
+    let targetList = [];
+    //记录上次截取的位置
+    let primitivePosition = 0;
+    for (let i = 0; i < S.length; i++) {
+        if (S[i] === "(") {
+            stack.push(S[i]);
+        } else {
+            stack.pop();
+            if (stack.length === 0) {
+                let currentPrimitive = S.substring(primitivePosition, i + 1);
+                primitivePosition = i + 1;
+                targetList.push(currentPrimitive.substring(1, currentPrimitive.length - 1));
+            }
+        }
+    }
+    return targetList.join("");
+};
+```
+
+### others
+
+```javascript
+var removeOuterParentheses = function (S) {
+    let len = S.length,
+        l = 0,
+        r = 0,
+        ret = '';
+    let stack = [];
+    for (let i = 0; i < len; i++) {
+        if (stack.length == 0) {
+            stack.push(S[i])
+            l = i;
+        } else {
+            if (S[i] == ')') {
+                stack.pop()
+                if (stack.length == 0) {
+                    r = i;
+                    // substring(start,end)  切割的为[start,end)
+                    ret += S.substring(l + 1, r);
+                }
+            } else {
+                stack.push(S[i])
+            }
+            // console.log(stack)
+        }
+    }
+    return ret
+};
+```

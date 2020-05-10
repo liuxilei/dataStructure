@@ -24,8 +24,10 @@ var calPoints = function (ops) {
     return stack.reduce((prev, cur) => prev + cur);
 };
 
+module.exports = calPoints;
+
 //others
-var calPoints = function (ops) {
+var calPoints2 = function (ops) {
     let arr = [];
     let opera = {
         "+": function () {

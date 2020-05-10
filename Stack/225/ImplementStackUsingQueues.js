@@ -46,6 +46,8 @@ MyStack.prototype.empty = function() {
     return this.stack.length === 0;
 };
 
+module.exports = MyStack;
+
 /**
  * Your MyStack object will be instantiated and called as such:
  * var obj = new MyStack()

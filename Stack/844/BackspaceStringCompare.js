@@ -26,13 +26,15 @@ var backspaceCompare = function(S, T) {
     return stack1.join("") === stack2.join("");
 };
 
+module.exports = backspaceCompare;
+
 //others
 /**
  * @param {string} S
  * @param {string} T
  * @return {boolean}
  */
-var backspaceCompare = function(S, T) {
+var backspaceCompare2 = function(S, T) {
     let reg = /[a-z](?=\#)\#/g;
     S = S.replace(/^\#/,'').replace(reg, '');
     T = T.replace(/^\#/,'').replace(reg, '');

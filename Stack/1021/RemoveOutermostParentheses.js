@@ -26,13 +26,14 @@ var removeOuterParentheses = function (S) {
     }
     return targetList.join("");
 };
+module.exports = removeOuterParentheses;
 
 //others
 /**
  * @param {string} S
  * @return {string}
  */
-var removeOuterParentheses = function (S) {
+var removeOuterParentheses2 = function (S) {
     let len = S.length,
         l = 0,
         r = 0,

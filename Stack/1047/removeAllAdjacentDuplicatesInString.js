@@ -18,8 +18,10 @@ var removeDuplicates = function(S) {
     return stack.join("");
 };
 
+module.exports = removeDuplicates;
+
 //others
-var removeDuplicates = function(S) {
+var removeDuplicates2 = function(S) {
     let stack = []
     for(c of S) {
         let prev = stack.pop()

@@ -31,13 +31,15 @@ var nextGreaterElement = function(nums1, nums2) {
     return result;
 };
 
+module.exports = nextGreaterElement;
+
 //others
 /**
  * @param {number[]} nums1
  * @param {number[]} nums2
  * @return {number[]}
  */
-var nextGreaterElement = function (nums1, nums2) {
+var nextGreaterElement2 = function (nums1, nums2) {
     return nums1.map(cur => {
         let t = nums2.indexOf(cur) //获取nums1中的当前值（cur）在nums2中位置
         for (t, len = nums2.length; t < len; t++){ //循环nums2，从t位置开始
@@ -55,7 +57,7 @@ var nextGreaterElement = function (nums1, nums2) {
  * @param {number[]} nums2
  * @return {number[]}
  */
-var nextGreaterElement = function(nums1, nums2) {
+var nextGreaterElement3 = function(nums1, nums2) {
     const { length } = nums1;
     let result = [];
     for(let i = 0; i < length; i++){
