@@ -17,3 +17,4 @@
 844|[Backspace String Compare(比较含退格的字符串)](./Stack/844/README.md)|简单
 5404|[Build an Array With Stack Operations(用栈操作构建数组)](./Stack/5404/README.md)|简单
 面试题59-I|[滑动窗口最大值](./Stack/59-I/README.md)|简单
+71|[Simplify Path(简化路径)](./Stack/71/README.md)|中等
