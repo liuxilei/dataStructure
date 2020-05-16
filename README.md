@@ -21,3 +21,4 @@
 921|[Minimum Add to Make Parentheses Valid(使括号有效的最少添加)](./Stack/921/README.md)|中等
 1381|[Design a Stack With Increment Operation(设计一个支持增量操作的栈)](./Stack/1381/README.md)|中等
 341|[Flatten Nested List Iterator(扁平化嵌套列表迭代器)](./Stack/341/README.md)|中等
+739|[Daily Temperatures(每日温度)](./Stack/739/README.md)|中等
