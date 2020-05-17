@@ -8,7 +8,7 @@
 :--:|:--|:--:
 20|[Valid Parentheses(有效的括号)](./Stack/20/README.md)|简单
 155|[Min Stack(最小栈)](./Stack/155/README.md)|简单
-155|[Implement Stack using Queues(用队列实现栈)](./Stack/225/README.md)|简单
+225|[Implement Stack using Queues(用队列实现栈)](./Stack/225/README.md)|简单
 1021|[Remove Outermost Parentheses(删除最外层的括号)](./Stack/1021/README.md)|简单
 1047|[Remove All Adjacent Duplicates In String(删除字符串中的所有相邻重复项)](./Stack/1047/README.md)|简单
 682|[Baseball Game(棒球比赛)](./Stack/682/README.md)|简单
@@ -23,3 +23,4 @@
 341|[Flatten Nested List Iterator(扁平化嵌套列表迭代器)](./Stack/341/README.md)|中等
 739|[Daily Temperatures(每日温度)](./Stack/739/README.md)|中等
 394|[Decode String(字符串解码)](./Stack/394/README.md)|中等
+503|[Next Greater Element II(下一个更大元素 II)](./Stack/503/README.md)|中等
