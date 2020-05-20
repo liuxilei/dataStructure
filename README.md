@@ -26,3 +26,4 @@
 503|[Next Greater Element II(下一个更大元素 II)](./Stack/503/README.md)|中等
 946|[Validate Stack Sequences(验证栈序列)](./Stack/946/README.md)|中等
 1003|[Check If Word Is Valid After Substitutions(检查替换后的词是否有效)](./Stack/1003/README.md)|中等
+856|[Score of Parentheses(括号的分数)](./Stack/856/README.md)|中等
