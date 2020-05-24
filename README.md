@@ -30,3 +30,4 @@
 1190|[Reverse Substrings Between Each Pair of Parentheses(反转每对括号间的子串)](./Stack/1190/README.md)|中等
 1209|[Remove All Adjacent Duplicates in String II(删除字符串中的所有相邻重复项 II)](./Stack/1209/README.md)|中等
 150|[Evaluate Reverse Polish Notation(逆波兰表达式求值)](./Stack/150/README.md)|中等
+1249|[Minimum Remove to Make Valid Parentheses(移除无效的括号)](./Stack/1249/README.md)|中等
