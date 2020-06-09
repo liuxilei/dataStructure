@@ -45,26 +45,41 @@ Since the answer may be large, **return the answer modulo** `10^9 + 7`.
 
 ## MySolution
 
-性能很差
 ```javascript
 /**
  * @param {number[]} A
  * @return {number}
  */
 var sumSubarrayMins = function (A) {
-    const sonArrs = [];
+    const left = [];
+    const right = [];
+    let stack = [];
+    let sum = 0;
+
     for (let i = 0; i < A.length; i++) {
-        for (let k = 0; k < A.length - i + 1; k++) {
-            let tempArr = A.slice(k, k + i + 1);
-            if (tempArr.length === i + 1) {
-                sonArrs.push(tempArr);
-            }
+        let item = A[i];
+        while (stack.length && A[stack[stack.length - 1]] >= item) {
+            stack.pop();
         }
+        left[i] = stack.length ? stack[stack.length - 1] : -1;
+        stack.push(i);
     }
-    sonArrs.map((item, index) => {
-        sonArrs[index] = Math.min(...item);
-    });
-    return sonArrs.reduce((accumulator, currentValue) => accumulator + currentValue);
+    stack = [];
+
+    for (let i = A.length - 1; i >= 0; i--) {
+        let item = A[i];
+        while (stack.length && A[stack[stack.length - 1]] > item) {
+            stack.pop();
+        }
+        right[i] = stack.length ? stack[stack.length - 1] : A.length;
+        stack.push(i);
+    }
+
+    for (let i = 0;i < A.length;i++) {
+        sum += (i - left[i]) * (right[i] - i) * A[i];
+        sum %= (1e9 + 7);
+    }
+    return sum;
 };
 ```
 
