@@ -37,3 +37,4 @@
 385|[Mini Parser(迷你语法分析器)](./Stack/385/README.md)|中等
 735|[Asteroid Collision(行星碰撞)](./Stack/735/README.md)|中等
 907|[Sum of Subarray Minimums(子数组的最小值之和)](./Stack/907/README.md)|中等
+402|[Remove K Digits(移掉K位数字)](./Stack/402/README.md)|中等
