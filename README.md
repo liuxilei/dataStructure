@@ -39,3 +39,4 @@
 907|[Sum of Subarray Minimums(子数组的最小值之和)](./Stack/907/README.md)|中等
 402|[Remove K Digits(移掉K位数字)](./Stack/402/README.md)|中等
 1124|[Longest Well-Performing Interval(表现良好的最长时间段)](./Stack/1124/README.md)|中等
+456|[132 Pattern(132模式)](./Stack/132/README.md)|中等
