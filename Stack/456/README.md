@@ -64,6 +64,14 @@ Given a sequence of n integers a1, a2, ..., an, a 132 pattern is a subsequence a
 
 [题解](https://leetcode-cn.com/problems/132-pattern/solution/132mo-shi-by-leetcode-2/)
 
+思路
+- 1.如果数组长度小于3，直接返回false（寻找132模式）
+- 2.将每个元素前面的最小值，放入数组min
+- 3.从后往前遍历，首先满足条件 3>1（一定满足3>=1，排除3=1的情况）
+- 4.while循环确保条件2>1,只要有2<=1的情况，直接出栈
+- 5.只要栈非空，说明同时满足3>1 且2>1，一旦满足2<3，返回true
+- 6.其余情况直接入栈 */
+
 ```javascript
 /**
  * @param {number[]} nums
