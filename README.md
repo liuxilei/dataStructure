@@ -40,4 +40,5 @@
 402|[Remove K Digits(移掉K位数字)](./Stack/402/README.md)|中等
 1124|[Longest Well-Performing Interval(表现良好的最长时间段)](./Stack/1124/README.md)|中等
 456|[132 Pattern(132模式)](./Stack/456/README.md)|中等
-面试题 17.21|[Volume of Histogram LCCI( 直方图的水量)](./Stack/17.21/README.md)|困难
+面试题 17.21|[Volume of Histogram LCCI(直方图的水量)](./Stack/17.21/README.md)|困难
+42|[ Trapping Rain Water(接雨水)](./Stack/42/README.md)|困难
