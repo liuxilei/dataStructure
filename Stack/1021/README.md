@@ -12,7 +12,7 @@ Return S after removing the outermost parentheses of every primitive string in t
 
     Input: "(()())(())"
     Output: "()()()"
-    Explanation: 
+    Explanation:
     The input string is "(()())(())", with primitive decomposition "(()())" + "(())".
     After removing outer parentheses of each part, this is "()()" + "()" = "()()()".
 
@@ -20,7 +20,7 @@ Return S after removing the outermost parentheses of every primitive string in t
 
     Input: "(()())(())(()(()))"
     Output: "()()()()(())"
-    Explanation: 
+    Explanation:
     The input string is "(()())(())(()(()))", with primitive decomposition "(()())" + "(())" + "(()(()))".
     After removing outer parentheses of each part, this is "()()" + "()" + "()(())" = "()()()()(())".
 
@@ -28,10 +28,9 @@ Return S after removing the outermost parentheses of every primitive string in t
 
     Input: "()()"
     Output: ""
-    Explanation: 
+    Explanation:
     The input string is "()()", with primitive decomposition "()" + "()".
     After removing outer parentheses of each part, this is "" + "" = "".
- 
 
 **Note:**
 
@@ -40,15 +39,14 @@ Return S after removing the outermost parentheses of every primitive string in t
 3. S is a valid parentheses string
 
 ## 删除最外层的括号
-有效括号字符串为空 `("")`、`"(" + A + ")"` 或 `A + B`，其中 A 和 B 都是有效的括号字符串，`+` 代表字符串的连接。例如，`""`，`"()"`，`"(())()"` 和 `"(()(()))"` 都是有效的括号字符串。
 
-如果有效字符串 `S` 非空，且不存在将其拆分为 `S = A+B` 的方法，我们称其为`原语（primitive）`，其中 `A` 和 `B` 都是非空有效括号字符串。
+有效括号字符串为空  `("")`、`"(" + A + ")"`  或  `A + B`，其中  A 和  B  都是有效的括号字符串，`+`  代表字符串的连接。例如，`""`，`"()"`，`"(())()"`  和  `"(()(()))"`  都是有效的括号字符串。
 
-给出一个非空有效字符串 `S`，考虑将其进行原语化分解，使得：`S = P_1 + P_2 + ... + P_k`，其中 `P_i` 是有效括号字符串原语。
+如果有效字符串  `S`  非空，且不存在将其拆分为  `S = A+B`  的方法，我们称其为`原语（primitive）`，其中  `A` 和  `B`  都是非空有效括号字符串。
 
-对 `S` 进行原语化分解，删除分解中每个原语字符串的最外层括号，返回 `S` 。
+给出一个非空有效字符串  `S`，考虑将其进行原语化分解，使得：`S = P_1 + P_2 + ... + P_k`，其中  `P_i`  是有效括号字符串原语。
 
- 
+对  `S`  进行原语化分解，删除分解中每个原语字符串的最外层括号，返回 `S` 。
 
 **示例 1：**
 
@@ -73,17 +71,17 @@ Return S after removing the outermost parentheses of every primitive string in t
     解释：
     输入字符串为 "()()"，原语化分解得到 "()" + "()"，
     删除每个部分中的最外层括号后得到 "" + "" = ""。
- 
 
 **提示：**
 
 1. S.length <= 10000
-2. S[i] 为 "(" 或 ")"
+2. S[i] 为  "(" 或  ")"
 3. S 是一个有效括号字符串
 
 ### My Solution
 
 #### 思路
+
 定义一个栈，依次向栈内塞元素，每当（）成对的时候取出，判定栈是否为空，如果为空，即收集到一个原语，然后继续下去。
 
 ```javascript
@@ -97,7 +95,7 @@ var removeOuterParentheses = function (S) {
     //记录上次截取的位置
     let primitivePosition = 0;
     for (let i = 0; i < S.length; i++) {
-        if (S[i] === "(") {
+        if (S[i] === '(') {
             stack.push(S[i]);
         } else {
             stack.pop();
@@ -108,7 +106,7 @@ var removeOuterParentheses = function (S) {
             }
         }
     }
-    return targetList.join("");
+    return targetList.join('');
 };
 ```
 
@@ -123,22 +121,22 @@ var removeOuterParentheses = function (S) {
     let stack = [];
     for (let i = 0; i < len; i++) {
         if (stack.length == 0) {
-            stack.push(S[i])
+            stack.push(S[i]);
             l = i;
         } else {
             if (S[i] == ')') {
-                stack.pop()
+                stack.pop();
                 if (stack.length == 0) {
                     r = i;
                     // substring(start,end)  切割的为[start,end)
                     ret += S.substring(l + 1, r);
                 }
             } else {
-                stack.push(S[i])
+                stack.push(S[i]);
             }
             // console.log(stack)
         }
     }
-    return ret
+    return ret;
 };
 ```

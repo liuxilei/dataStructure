@@ -6,8 +6,8 @@ Valid operators are `+`, `-`, `*`, `/`. Each operand may be an integer or anothe
 
 **Note:**
 
-- Division between two integers should truncate toward zero.
-- The given RPN expression is always valid. That means the expression would always evaluate to a result and there won't be any divide by zero operation.
+-   Division between two integers should truncate toward zero.
+-   The given RPN expression is always valid. That means the expression would always evaluate to a result and there won't be any divide by zero operation.
 
 **Example 1:**
 
@@ -25,7 +25,7 @@ Valid operators are `+`, `-`, `*`, `/`. Each operand may be an integer or anothe
 
     Input: ["10", "6", "9", "3", "+", "-11", "*", "/", "*", "17", "+", "5", "+"]
     Output: 22
-    Explanation: 
+    Explanation:
     ((10 * (6 / ((9 + 3) * -11))) + 17) + 5
     = ((10 * (6 / (12 * -11))) + 17) + 5
     = ((10 * (6 / -132)) + 17) + 5
@@ -34,10 +34,9 @@ Valid operators are `+`, `-`, `*`, `/`. Each operand may be an integer or anothe
     = 17 + 5
     = 22
 
---- 
+---
 
 ## 逆波兰表达式求值
-
 
 根据逆波兰表示法，求表达式的值。
 
@@ -45,8 +44,8 @@ Valid operators are `+`, `-`, `*`, `/`. Each operand may be an integer or anothe
 
 **说明：**
 
-- 整数除法只保留整数部分。
-- 给定逆波兰表达式总是有效的。换句话说，表达式总会得出有效数值且不存在除数为 0 的情况。
+-   整数除法只保留整数部分。
+-   给定逆波兰表达式总是有效的。换句话说，表达式总会得出有效数值且不存在除数为 0 的情况。
 
 **示例 1：**
 
@@ -64,7 +63,7 @@ Valid operators are `+`, `-`, `*`, `/`. Each operand may be an integer or anothe
 
     输入: ["10", "6", "9", "3", "+", "-11", "*", "/", "*", "17", "+", "5", "+"]
     输出: 22
-    解释: 
+    解释:
     ((10 * (6 / ((9 + 3) * -11))) + 17) + 5
     = ((10 * (6 / (12 * -11))) + 17) + 5
     = ((10 * (6 / -132)) + 17) + 5
@@ -73,7 +72,6 @@ Valid operators are `+`, `-`, `*`, `/`. Each operand may be an integer or anothe
     = 17 + 5
     = 22
 
-
 ## My Solution
 
 ```javascript
@@ -81,26 +79,30 @@ Valid operators are `+`, `-`, `*`, `/`. Each operand may be an integer or anothe
  * @param {string[]} tokens
  * @return {number}
  */
-var evalRPN = function(tokens) {
-    const operators = ["+", "-", "*", "/"];
+var evalRPN = function (tokens) {
+    const operators = ['+', '-', '*', '/'];
     const stack = [];
     const func = (a, b, operator) => {
-        switch(operator) {
-            case "+": 
+        switch (operator) {
+            case '+':
                 return a + b;
-            case "-":
+            case '-':
                 return a - b;
-            case "*":
+            case '*':
                 return a * b;
-            case "/":
-                return a/b > 0 ? Math.floor(a / b) : Math.ceil(a / b);
+            case '/':
+                return a / b > 0 ? Math.floor(a / b) : Math.ceil(a / b);
         }
-    }
+    };
     const isNumber = (str) => {
-        return typeof (str * 1) === "number";
-    }
+        return typeof (str * 1) === 'number';
+    };
     for (let item of tokens) {
-        if (operators.includes(item) && isNumber(stack[stack.length - 1]) && isNumber(stack[stack.length - 2])) {
+        if (
+            operators.includes(item) &&
+            isNumber(stack[stack.length - 1]) &&
+            isNumber(stack[stack.length - 2])
+        ) {
             let temp = stack.pop();
             stack[stack.length - 1] = func(stack[stack.length - 1] * 1, temp * 1, item);
         } else {
@@ -118,27 +120,25 @@ var evalRPN = function(tokens) {
  * @param {string[]} tokens
  * @return {number}
  */
-var evalRPN = function(tokens) {
+var evalRPN = function (tokens) {
     let fun = () => {
         let char = tokens.pop();
-        let num;//由于减法和除法的存在顺序问题
+        let num; //由于减法和除法的存在顺序问题
         switch (char) {
-            case "+":
+            case '+':
                 return fun() + fun();
-            case "-":
+            case '-':
                 num = fun();
                 return fun() - num;
-            case "*":
+            case '*':
                 return fun() * fun();
-            case "/":
+            case '/':
                 num = fun();
                 return parseInt(fun() / num, 10);
             default:
                 return parseInt(char, 10);
-        }  
-    }
+        }
+    };
     return fun();
 };
-
 ```
-

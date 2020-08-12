@@ -4,8 +4,8 @@ Given a non-negative integer num represented as a string, remove k digits from t
 
 **Note:**
 
-- The length of num is less than 10002 and will be ≥ k.
-- The given num does not contain any leading zero.
+-   The length of num is less than 10002 and will be ≥ k.
+-   The given num does not contain any leading zero.
 
 **Example 1:**
 
@@ -27,14 +27,14 @@ Given a non-negative integer num represented as a string, remove k digits from t
 
 ---
 
-## 移掉K位数字
+## 移掉 K 位数字
 
-给定一个以字符串表示的非负整数 num，移除这个数中的 k 位数字，使得剩下的数字最小。
+给定一个以字符串表示的非负整数  num，移除这个数中的 k 位数字，使得剩下的数字最小。
 
 **注意:**
 
-- num 的长度小于 10002 且 ≥ k。
-- num 不会包含任何前导零。
+-   num 的长度小于 10002 且  ≥ k。
+-   num 不会包含任何前导零。
 
 **示例 1 :**
 
@@ -59,10 +59,11 @@ Given a non-negative integer num represented as a string, remove k digits from t
 [官方思路(利用栈的贪心算法)](https://leetcode-cn.com/problems/remove-k-digits/solution/yi-diao-kwei-shu-zi-by-leetcode/)
 
 **解题思路**
-- 从左到右遍历一次，维护单调栈
-- 删除栈顶元素的条件：当前遍历的元素比此时的栈顶元素小
-- 首位的 '0' 为无效字符，要清除首位的 '0'，例如：'0015' -> '15'
-- 如果以上步骤处理完，字符为空，也要返回 '0'
+
+-   从左到右遍历一次，维护单调栈
+-   删除栈顶元素的条件：当前遍历的元素比此时的栈顶元素小
+-   首位的 '0' 为无效字符，要清除首位的 '0'，例如：'0015' -> '15'
+-   如果以上步骤处理完，字符为空，也要返回 '0'
 
 ```javascript
 /**
@@ -70,27 +71,26 @@ Given a non-negative integer num represented as a string, remove k digits from t
  * @param {number} k
  * @return {string}
  */
-var removeKdigits = function(num, k) {
+var removeKdigits = function (num, k) {
     const stack = [];
-    for (let i = 0;i < num.length;i++) {
+    for (let i = 0; i < num.length; i++) {
         let item = num[i];
-        while(stack.length && k > 0 && item < stack[stack.length - 1]) {
+        while (stack.length && k > 0 && item < stack[stack.length - 1]) {
             stack.pop();
             k--;
         }
         stack.push(item);
     }
 
-    while(k > 0) {
+    while (k > 0) {
         stack.pop();
         k--;
     }
 
-    while(stack.length > 0 && stack[0] === "0") {
+    while (stack.length > 0 && stack[0] === '0') {
         stack.shift();
     }
 
-    return stack.length > 0 ? stack.join("") : "0";
+    return stack.length > 0 ? stack.join('') : '0';
 };
 ```
-

@@ -2,31 +2,31 @@
 function Stack() {
     var items = [];
     //添加元素到栈顶
-    this.push = function(element) {
+    this.push = function (element) {
         items.push(element);
     };
     //移除栈顶的元素
-    this.pop = function() {
+    this.pop = function () {
         return items.pop();
     };
     //返回栈顶的元素
-    this.peek = function() {
+    this.peek = function () {
         return items[items.length - 1];
-    }
+    };
     //判断栈内是否有元素
-    this.isEmpty = function() {
+    this.isEmpty = function () {
         return items.length === 0;
     };
     //查看栈的元素个数
-    this.size = function() {
+    this.size = function () {
         return items.length;
     };
     //清空栈
-    this.clear = function() {
+    this.clear = function () {
         items = [];
     };
     //打印栈
-    this.print = function() {
+    this.print = function () {
         console.log(items.toString());
     };
 }
@@ -36,7 +36,7 @@ module.exports = Stack;
 function divideBy2(decNumber) {
     var remStack = new Stack(),
         rem,
-        binaryString = "";
+        binaryString = '';
     while (decNumber > 0) {
         rem = Math.floor(decNumber % 2);
         remStack.push(rem);
@@ -52,12 +52,11 @@ function divideBy2(decNumber) {
 // console.log(divideBy2(10));
 // console.log(divideBy2(1000));
 
-
 function baseConverter(decNumber, base) {
     var remStack = new Stack(),
         rem,
-        baseString = "",
-        digits = "0123456789ABCDEF";
+        baseString = '',
+        digits = '0123456789ABCDEF';
     while (decNumber > 0) {
         rem = Math.floor(decNumber % base);
         remStack.push(rem);

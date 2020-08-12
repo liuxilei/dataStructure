@@ -4,11 +4,11 @@ function Set() {
     // this.has = function(value) {
     //     return value in items;
     // };
-    this.has = function(value) {
+    this.has = function (value) {
         return items.hasOwnProperty(value);
     };
     //向集合添加一个新的项
-    this.add = function(value) {
+    this.add = function (value) {
         if (!this.has(value)) {
             items[value] = value;
             return true;
@@ -16,7 +16,7 @@ function Set() {
         return false;
     };
     //从集合移除一个值
-    this.remove = function(value) {
+    this.remove = function (value) {
         if (this.has(value)) {
             delete items[value];
             return true;
@@ -24,35 +24,35 @@ function Set() {
         return false;
     };
     //移除集合中的所有项
-    this.clear = function() {
+    this.clear = function () {
         items = {};
     };
     //返回集合所包含元素的数量。与数组的length属性类似
-    this.size = function() {
+    this.size = function () {
         return Object.keys(items).length;
     };
     //返回一个包含集合中所有值的数组
-    this.values = function() {
+    this.values = function () {
         return Object.keys(items);
     };
     //并集操作
-    this.union = function(otherSet) {
+    this.union = function (otherSet) {
         var unionSet = new Set();
         var values = this.values();
-        for (var i = 0;i < values.length;i++) {
+        for (var i = 0; i < values.length; i++) {
             unionSet.add(values[i]);
         }
         values = otherSet.values();
-        for (var i = 0;i < values.length;i++) {
+        for (var i = 0; i < values.length; i++) {
             unionSet.add(values[i]);
         }
         return unionSet;
     };
     //交集
-    this.intersection = function(otherSet) {
+    this.intersection = function (otherSet) {
         var intersection = new Set();
         var values = this.values();
-        for (var i = 0;i < values.length;i++) {
+        for (var i = 0; i < values.length; i++) {
             if (otherSet.has(values[i])) {
                 intersection.add(values[i]);
             }
@@ -60,30 +60,30 @@ function Set() {
         return intersection;
     };
     //差集
-    this.difference = function(otherSet) {
+    this.difference = function (otherSet) {
         var differenceSet = new Set();
         var values = this.values();
-        for (var i = 0;i < values.length;i++) {
+        for (var i = 0; i < values.length; i++) {
             if (!otherSet.has(values[i])) {
                 differenceSet.add(values[i]);
             }
         }
         return differenceSet;
-    }
+    };
     //是否为otherSet的子集
-    this.subset = function(otherSet) {
+    this.subset = function (otherSet) {
         if (this.size() > otherSet.size()) {
             return false;
         } else {
             var values = this.values();
-            for (var i = 0;i < values.length;i++) {
+            for (var i = 0; i < values.length; i++) {
                 if (!otherSet.has(values[i])) {
                     return false;
                 }
             }
             return true;
         }
-     }
+    };
 }
 
 // var set = new Set();
@@ -132,5 +132,3 @@ setC.add(4);
 
 console.log(setA.subset(setB));
 console.log(setA.subset(setC));
-
-

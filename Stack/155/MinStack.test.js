@@ -1,15 +1,15 @@
-const MinStack = require("./MinStack");
+const MinStack = require('./MinStack');
 
-describe("最小栈测试组", () => {
-    test("getMin方法测试", () => {
+describe('最小栈测试组', () => {
+    test('getMin方法测试', () => {
         const minStack = new MinStack();
         minStack.push(-2);
         minStack.push(0);
         minStack.push(-3);
         expect(minStack.getMin()).toBe(-3);
     });
-    
-    test("pop方法测试", () => {
+
+    test('pop方法测试', () => {
         const minStack = new MinStack();
         minStack.push(-2);
         minStack.push(0);
@@ -18,7 +18,7 @@ describe("最小栈测试组", () => {
         expect(minStack.getMin()).toBe(-2);
     });
 
-    test("top方法测试", () => {
+    test('top方法测试', () => {
         const minStack = new MinStack();
         minStack.push(-2);
         minStack.push(0);

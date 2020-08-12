@@ -1,8 +1,8 @@
-const sumSubarrayMins = require("./sumSubarrayMins");
+const sumSubarrayMins = require('./sumSubarrayMins');
 
-describe("子数组的最小值之和", () => {
-    test("sumSubarrayMins", () => {
-        expect(sumSubarrayMins([3,1,2,4])).toBe(17);
+describe('子数组的最小值之和', () => {
+    test('sumSubarrayMins', () => {
+        expect(sumSubarrayMins([3, 1, 2, 4])).toBe(17);
         expect(sumSubarrayMins([85])).toBe(85);
     });
 });

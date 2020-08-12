@@ -6,7 +6,7 @@
   "scripts": {
     "test": "jest",
     "commit": "git-cz",
-    "prettier": "prettier --write "
+    "prettier": "prettier --write ."
   },
   "repository": {
     "type": "git",

@@ -30,22 +30,21 @@ Note that after backspacing an empty text, the text will continue empty.
 
 **Note:**
 
-- 1 <= S.length <= 200
-- 1 <= T.length <= 200
-- S and T only contain lowercase letters and '#' characters.
+-   1 <= S.length <= 200
+-   1 <= T.length <= 200
+-   S and T only contain lowercase letters and '#' characters.
 
 **Follow up:**
 
-- Can you solve it in O(N) time and O(1) space?
+-   Can you solve it in O(N) time and O(1) space?
 
---- 
+---
 
 ## 比较含退格的字符串
+
 给定 `S` 和 `T` 两个字符串，当它们分别被输入到空白的文本编辑器后，判断二者是否相等，并返回结果。 `#` 代表退格字符。
 
 **注意**：如果对空文本输入退格字符，文本继续为空。
-
- 
 
 **示例 1：**
 
@@ -70,18 +69,16 @@ Note that after backspacing an empty text, the text will continue empty.
     输入：S = "a#c", T = "b"
     输出：false
     解释：S 会变成 “c”，但 T 仍然是 “b”。
- 
 
 **提示：**
 
 1. 1 <= S.length <= 200
 2. 1 <= T.length <= 200
 3. S 和 T 只含有小写字母以及字符 '#'。
- 
 
 **进阶：**
 
-- 你可以用 `O(N)` 的时间复杂度和 `O(1)` 的空间复杂度解决该问题吗？
+-   你可以用 `O(N)` 的时间复杂度和 `O(1)` 的空间复杂度解决该问题吗？
 
 ### My Solution
 
@@ -91,24 +88,24 @@ Note that after backspacing an empty text, the text will continue empty.
  * @param {string} T
  * @return {boolean}
  */
-var backspaceCompare = function(S, T) {
+var backspaceCompare = function (S, T) {
     let stack1 = [];
     let stack2 = [];
-    for (let i = 0;i < S.length;i++) {
-        if (S[i] === "#") {
+    for (let i = 0; i < S.length; i++) {
+        if (S[i] === '#') {
             stack1.pop();
         } else {
             stack1.push(S[i]);
         }
     }
-    for (let i = 0;i < T.length;i++) {
-        if (T[i] === "#") {
+    for (let i = 0; i < T.length; i++) {
+        if (T[i] === '#') {
             stack2.pop();
         } else {
             stack2.push(T[i]);
         }
     }
-    return stack1.join("") === stack2.join("");
+    return stack1.join('') === stack2.join('');
 };
 ```
 
@@ -120,11 +117,11 @@ var backspaceCompare = function(S, T) {
  * @param {string} T
  * @return {boolean}
  */
-var backspaceCompare = function(S, T) {
+var backspaceCompare = function (S, T) {
     let reg = /[a-z](?=\#)\#/g;
-    S = S.replace(/^\#/,'').replace(reg, '');
-    T = T.replace(/^\#/,'').replace(reg, '');
-    if(!S.includes('#') && !T.includes('#')){
+    S = S.replace(/^\#/, '').replace(reg, '');
+    T = T.replace(/^\#/, '').replace(reg, '');
+    if (!S.includes('#') && !T.includes('#')) {
         return S == T;
     }
     return backspaceCompare(S, T);

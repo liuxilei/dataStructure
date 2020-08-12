@@ -6,13 +6,11 @@ The span of the stock's price today is defined as the maximum number of consecu
 
 For example, if the price of a stock over the next 7 days were `[100, 80, 60, 70, 60, 75, 85]`, then the stock spans would be `[1, 1, 1, 2, 1, 4, 6]`.
 
- 
-
 **Example 1:**
 
     Input: ["StockSpanner","next","next","next","next","next","next","next"], [[],[100],[80],[60],[70],[60],[75],[85]]
     Output: [null,1,1,1,2,1,4,6]
-    Explanation: 
+    Explanation:
     First, S = StockSpanner() is initialized.  Then:
     S.next(100) is called and returns 1,
     S.next(80) is called and returns 1,
@@ -24,7 +22,6 @@ For example, if the price of a stock over the next 7 days were `[100, 80, 60, 70
 
     Note that (for example) S.next(75) returned 4, because the last 4 prices
     (including today's price of 75) were less than or equal to today's price.
- 
 
 **Note:**
 
@@ -41,9 +38,7 @@ For example, if the price of a stock over the next 7 days were `[100, 80, 60, 70
 
 今天股票价格的跨度被定义为股票价格小于或等于今天价格的最大连续日数（从今天开始往回数，包括今天）。
 
-例如，如果未来7天股票的价格是 `[100, 80, 60, 70, 60, 75, 85]`，那么股票跨度将是 `[1, 1, 1, 2, 1, 4, 6]`。
-
- 
+例如，如果未来 7 天股票的价格是 `[100, 80, 60, 70, 60, 75, 85]`，那么股票跨度将是 `[1, 1, 1, 2, 1, 4, 6]`。
 
 **示例：**
 
@@ -61,31 +56,29 @@ For example, if the price of a stock over the next 7 days were `[100, 80, 60, 70
 
     注意 (例如) S.next(75) 返回 4，因为截至今天的最后 4 个价格
     (包括今天的价格 75) 小于或等于今天的价格。
- 
 
 **提示：**
 
-1. 调用 StockSpanner.next(int price) 时，将有 1 <= price <= 10^5。
-2. 每个测试用例最多可以调用  10000 次 StockSpanner.next。
-3. 在所有测试用例中，最多调用 150000 次 StockSpanner.next。
+1. 调用  StockSpanner.next(int price)  时，将有  1 <= price <= 10^5。
+2. 每个测试用例最多可以调用   10000 次 StockSpanner.next。
+3. 在所有测试用例中，最多调用  150000  次  StockSpanner.next。
 4. 此问题的总时间限制减少了 50%。
-
 
 ## My Solution
 
 ```javascript
-var StockSpanner = function() {
+var StockSpanner = function () {
     this.stack = [];
 };
 
-/** 
+/**
  * @param {number} price
  * @return {number}
  */
-StockSpanner.prototype.next = function(price) {
+StockSpanner.prototype.next = function (price) {
     this.stack.push(price);
     let sum = 0;
-    for (let i = this.stack.length- 1;i >= 0;i--) {
+    for (let i = this.stack.length - 1; i >= 0; i--) {
         if (this.stack[i] <= price) {
             sum++;
         } else {
@@ -103,28 +96,26 @@ StockSpanner.prototype.next = function(price) {
 ```
 
 ## Others
-1. 暴力法
-在此不再赘述，每加入一个新元素即从后向前扫描并计数，遇到比自己大的元素则终止并返回这个计数。
 
-2. 跨度法
-既然是跨度问题，就抓住“跨度”这个概念。先在纸上画几个例题，试着找下规律。
-举个例子，对于例子6，1，2，3，4，9，从后往前逆推一下，当我们新插入9的时候，如果发现前一位的4比9小，那么是否说明比9小的数量就等于比4小的数量加1？然而这是错的，因为首位的6比9小，却比4大，因此截止数字的4时候，比4小的数量中并不包含6与9的对比。然而却由此可以确定的是，从6后面的数字1开始一直到9之前的数字4之间的所有数字一定都比9小，因此我们可以直接借助4所存储的跨度值，准确地跳跃到数字6所在的位置去继续检测。随后会发现6依然比9小，所以对于数字9的跨度值而言，应该是数字4的跨度值加上数字6所存储的跨度值再加1。
+1. 暴力法在此不再赘述，每加入一个新元素即从后向前扫描并计数，遇到比自己大的元素则终止并返回这个计数。
 
-继续类推，假如这个例子前面再扩展几个数字，变成1，8，2，3，6，1，2，3，4，9，则又可以从数字6所在的位置直接跳跃到数字8去继续重复上面的步骤。像这样优化以后的算法，由于跳跃的发生，则一定会拥有比暴力法更优的时间复杂度。
+2. 跨度法既然是跨度问题，就抓住“跨度”这个概念。先在纸上画几个例题，试着找下规律。举个例子，对于例子 6，1，2，3，4，9，从后往前逆推一下，当我们新插入 9 的时候，如果发现前一位的 4 比 9 小，那么是否说明比 9 小的数量就等于比 4 小的数量加 1？然而这是错的，因为首位的 6 比 9 小，却比 4 大，因此截止数字的 4 时候，比 4 小的数量中并不包含 6 与 9 的对比。然而却由此可以确定的是，从 6 后面的数字 1 开始一直到 9 之前的数字 4 之间的所有数字一定都比 9 小，因此我们可以直接借助 4 所存储的跨度值，准确地跳跃到数字 6 所在的位置去继续检测。随后会发现 6 依然比 9 小，所以对于数字 9 的跨度值而言，应该是数字 4 的跨度值加上数字 6 所存储的跨度值再加 1。
+
+继续类推，假如这个例子前面再扩展几个数字，变成 1，8，2，3，6，1，2，3，4，9，则又可以从数字 6 所在的位置直接跳跃到数字 8 去继续重复上面的步骤。像这样优化以后的算法，由于跳跃的发生，则一定会拥有比暴力法更优的时间复杂度。
 
 ```javascript
-var StockSpanner = function() {
+var StockSpanner = function () {
     // 股价
     this.stockPrice = [];
     // 跨度值
     this.spanner = [];
 };
 
-/** 
+/**
  * @param {number} price
  * @return {number}
  */
-StockSpanner.prototype.next = function(price) {
+StockSpanner.prototype.next = function (price) {
     var count = 0;
     // 对第一个输入的价格进行处理
     if (this.spanner.length == 0) {
@@ -135,15 +126,14 @@ StockSpanner.prototype.next = function(price) {
     // 取最后一位作为下标
     var index = this.stockPrice.length - 1;
     // 循环向前，直到遇见比新插入的值更大的值
-    while ((price >= this.stockPrice[index]) && (index >= 0)) {
+    while (price >= this.stockPrice[index] && index >= 0) {
         // 累加跨度值
         count += this.spanner[index];
         // 下标按跨度值跳跃
         index -= this.spanner[index];
-        
     }
     // 最后加上新插入价格所带来的跨度值，为1
-    count ++;
+    count++;
     // 把价格存起来
     this.stockPrice.push(price);
     // 把跨度值存起来

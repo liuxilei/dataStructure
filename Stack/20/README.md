@@ -34,12 +34,11 @@ Note that an empty string is also considered valid.
     Input: "{[]}"
     Output: true
 
-
 ---
 
 ## 有效的括号
 
-给定一个只包括 '('，')'，'{'，'}'，'['，']' 的字符串，判断字符串是否有效。
+给定一个只包括 '('，')'，'{'，'}'，'['，']'  的字符串，判断字符串是否有效。
 
 有效字符串需满足：
 
@@ -53,22 +52,22 @@ Note that an empty string is also considered valid.
     输入: "()"
     输出: true
 
-**示例 2:**
+**示例  2:**
 
     输入: "()[]{}"
     输出: true
 
-**示例 3:**
+**示例  3:**
 
     输入: "(]"
     输出: false
 
-**示例 4:**
+**示例  4:**
 
     输入: "([)]"
     输出: false
 
-**示例 5:**
+**示例  5:**
 
     输入: "{[]}"
     输出: true
@@ -80,14 +79,14 @@ Note that an empty string is also considered valid.
  * @param {string} s
  * @return {boolean}
  */
-var isValid = function(s) {
+var isValid = function (s) {
     let stack = [];
     const map = {
-        "[": "]",
-        "{": "}",
-        "(": ")"
+        '[': ']',
+        '{': '}',
+        '(': ')',
     };
-    for (let i = 0;i < s.length;i++) {
+    for (let i = 0; i < s.length; i++) {
         if (map[s[i]]) {
             stack.push(s[i]);
         } else if (s[i] !== map[stack.pop()]) {
@@ -96,6 +95,4 @@ var isValid = function(s) {
     }
     return stack.length === 0;
 };
-
-
 ```

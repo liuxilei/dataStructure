@@ -6,8 +6,6 @@ In a UNIX-style file system, a period . refers to the current directory. Furthe
 
 Note that the returned canonical path must always begin with a slash `/`, and there must be only a single slash `/` between two directory names. The last directory name (if it exists) **must not** end with a trailing `/`. Also, the canonical path must be the **shortest** string representing the absolute path.
 
- 
-
 **Example 1:**
 
     Input: "/home/"
@@ -41,13 +39,13 @@ Note that the returned canonical path must always begin with a slash `/`, and t
     Input: "/a//b////c/d//././/.."
     Output: "/a/b/c"
 
---- 
+---
 
 ## 简化路径
 
 以 Unix 风格给出一个文件的**绝对路径**，你需要简化它。或者换句话说，将其转换为规范路径。
 
-在 Unix 风格的文件系统中，一个点（`.`）表示当前目录本身；此外，两个点 （`..`） 表示将目录切换到上一级（指向父目录）；两者都可以是复杂相对路径的组成部分。更多信息请参阅：[Linux / Unix中的绝对路径 vs 相对路径](https://blog.csdn.net/u011327334/article/details/50355600)
+在 Unix 风格的文件系统中，一个点（`.`）表示当前目录本身；此外，两个点 （`..`）  表示将目录切换到上一级（指向父目录）；两者都可以是复杂相对路径的组成部分。更多信息请参阅：[Linux / Unix 中的绝对路径 vs 相对路径](https://blog.csdn.net/u011327334/article/details/50355600)
 
 请注意，返回的规范路径必须始终以斜杠 / 开头，并且两个目录名之间必须只有一个斜杠 /。最后一个目录名（如果存在）不能以 / 结尾。此外，规范路径必须是表示绝对路径的`最短`字符串。
 
@@ -97,52 +95,53 @@ var simplifyPath = function (path) {
     const stack = [];
     for (let i = 0; i < path.length; i++) {
         //删除重复/
-        if (path[i] === "/" && path[i - 1] === path[i]) {
+        if (path[i] === '/' && path[i - 1] === path[i]) {
             continue;
         }
         //删除./
-        if (path[i - 2] !== "." && path[i - 1] === "." && path[i] === "/") {
+        if (path[i - 2] !== '.' && path[i - 1] === '.' && path[i] === '/') {
             stack.pop();
             continue;
         }
         // 返回上一级../
-        if (path[i - 2] === "/" && path[i - 1] === "." && path[i - 1] === path[i] && (!Boolean(path[i + 1]) || path[i + 1] !== ".")) {
-            let lastIndex1 = stack.join("").lastIndexOf("/");
-            let lastIndex2 = stack.join("").lastIndexOf("/", lastIndex1 - 1);
+        if (
+            path[i - 2] === '/' &&
+            path[i - 1] === '.' &&
+            path[i - 1] === path[i] &&
+            (!Boolean(path[i + 1]) || path[i + 1] !== '.')
+        ) {
+            let lastIndex1 = stack.join('').lastIndexOf('/');
+            let lastIndex2 = stack.join('').lastIndexOf('/', lastIndex1 - 1);
             stack.splice(lastIndex2, lastIndex1 - lastIndex2 + 2);
             continue;
         }
         stack.push(path[i]);
     }
-    if (!stack.join("").endsWith("...")) {
-        if (stack[stack.length - 1] === "/" || stack[stack.length - 1] === ".") {
+    if (!stack.join('').endsWith('...')) {
+        if (stack[stack.length - 1] === '/' || stack[stack.length - 1] === '.') {
             stack.pop();
         }
     }
     if (stack.length === 0) {
-        return "/";
+        return '/';
     }
-    return stack.join("");
+    return stack.join('');
 };
 ```
-
 
 ## others
 
 ### 思路
+
 将`path`以`'/'`分割成数组，如 `/a/./b/../../c/`分割成`[ '', 'a', '.', 'b', '..', '..', 'c', '' ]`。 新建一个栈`stack`为当前的路径，遍历`path`分割后的数组元素:
 
-
-遇到正常的字母时，推入 `stack` 中
-遇到 `..` 时，`stack` 弹出最近一个路径
-遇到 `.` 或者为空时，不修改当前 `stack`。
-最后返回 `'/' + stack.join('/')` 为新的路径
+遇到正常的字母时，推入 `stack` 中遇到 `..` 时，`stack` 弹出最近一个路径遇到 `.` 或者为空时，不修改当前 `stack`。最后返回 `'/' + stack.join('/')` 为新的路径
 
 ```javascript
-var simplifyPath = function(path) {
+var simplifyPath = function (path) {
     const stack = [];
     const pathArr = path.split('/');
-    
+
     for (let item of pathArr) {
         if (item === '' || item === '.') {
             continue;
@@ -156,4 +155,3 @@ var simplifyPath = function(path) {
     return '/' + stack.join('/');
 };
 ```
-

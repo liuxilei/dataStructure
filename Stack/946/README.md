@@ -2,8 +2,6 @@
 
 Given two sequences pushed and `popped` **with distinct values**, return true if and only if this could have been the result of a sequence of push and pop operations on an initially empty stack.
 
- 
-
 **Example 1:**
 
     Input: pushed = [1,2,3,4,5], popped = [4,5,3,2,1]
@@ -17,7 +15,6 @@ Given two sequences pushed and `popped` **with distinct values**, return true 
     Input: pushed = [1,2,3,4,5], popped = [4,3,5,1,2]
     Output: false
     Explanation: 1 cannot be popped before 2.
- 
 
 **Note:**
 
@@ -26,11 +23,11 @@ Given two sequences pushed and `popped` **with distinct values**, return true 
 3. pushed is a permutation of popped.
 4. pushed and popped have distinct values.
 
---- 
+---
 
 ## 验证栈序列
 
-给定 `pushed` 和 `popped` 两个序列，每个序列中的 `值都不重复`，只有当它们可能是在最初空栈上进行的推入 push 和弹出 pop 操作序列的结果时，返回 `true`；否则，返回 `false` 。
+给定  `pushed`  和  `popped`  两个序列，每个序列中的 `值都不重复`，只有当它们可能是在最初空栈上进行的推入 push 和弹出 pop 操作序列的结果时，返回 `true`；否则，返回 `false` 。
 
 **示例 1：**
 
@@ -45,14 +42,12 @@ Given two sequences pushed and `popped` **with distinct values**, return true 
     输入：pushed = [1,2,3,4,5], popped = [4,3,5,1,2]
     输出：false
     解释：1 不能在 2 之前弹出。
- 
 
 **提示：**
 
 1. 0 <= pushed.length == popped.length <= 1000
 2. 0 <= pushed[i], popped[i] < 1000
-3. pushed 是 popped 的排列。
-
+3. pushed  是  popped  的排列。
 
 ## My Solution
 
@@ -69,7 +64,7 @@ var validateStackSequences = function (pushed, popped) {
         let item = pushed[i];
         stack.push(item);
         (function f(stack, popped) {
-            if ((stack[stack.length - 1] === popped[init] && init <= popped.length - 1)) {
+            if (stack[stack.length - 1] === popped[init] && init <= popped.length - 1) {
                 stack.pop();
                 init++;
                 f(stack, popped);
@@ -83,16 +78,16 @@ var validateStackSequences = function (pushed, popped) {
 ## Others
 
 ```javascript
-var validateStackSequences = function(pushed, popped) {
-    let popHead = 0
-    let stack = []
-    for(let i = 0;i<pushed.length;i++){
-        stack.push(pushed[i])
-        while(stack.length!=0&&stack[stack.length-1]==popped[popHead]){
-            stack.pop()
-            popHead++
-       }
+var validateStackSequences = function (pushed, popped) {
+    let popHead = 0;
+    let stack = [];
+    for (let i = 0; i < pushed.length; i++) {
+        stack.push(pushed[i]);
+        while (stack.length != 0 && stack[stack.length - 1] == popped[popHead]) {
+            stack.pop();
+            popHead++;
+        }
     }
-    return stack.length == 0
+    return stack.length == 0;
 };
 ```

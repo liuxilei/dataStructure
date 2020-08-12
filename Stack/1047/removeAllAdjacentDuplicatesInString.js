@@ -6,29 +6,29 @@
  * @param {string} S
  * @return {string}
  */
-var removeDuplicates = function(S) {
+var removeDuplicates = function (S) {
     let stack = [];
-    for (let i = 0;i < S.length;i++) {
+    for (let i = 0; i < S.length; i++) {
         if (S[i] !== stack[stack.length - 1]) {
             stack.push(S[i]);
         } else {
             stack.pop();
         }
     }
-    return stack.join("");
+    return stack.join('');
 };
 
 module.exports = removeDuplicates;
 
 //others
-var removeDuplicates2 = function(S) {
-    let stack = []
-    for(c of S) {
-        let prev = stack.pop()
-        if(prev !== c) {
-            stack.push(prev)
-            stack.push(c)
+var removeDuplicates2 = function (S) {
+    let stack = [];
+    for (c of S) {
+        let prev = stack.pop();
+        if (prev !== c) {
+            stack.push(prev);
+            stack.push(c);
         }
     }
-    return stack.join('')
+    return stack.join('');
 };

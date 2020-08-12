@@ -6,7 +6,7 @@ var nextGreaterElements = function (nums) {
     const stack = [];
     for (let i = 0, len = nums.length; i < len; i++) {
         let item = nums[i];
-        for (let temp = i === len - 1 ? 0 : i,j = temp; j < len; j++) {
+        for (let temp = i === len - 1 ? 0 : i, j = temp; j < len; j++) {
             let target = nums[j];
             if (target > item) {
                 stack.push(target);

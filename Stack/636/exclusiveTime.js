@@ -9,15 +9,15 @@ var exclusiveTime = function (n, logs) {
     const funcTime = Array(n).fill(0);
     //对应不同栈历史耗时
     const funcSumTime = [];
-    for (let i = 0;i < n;i++) {
+    for (let i = 0; i < n; i++) {
         funcSumTime[i] = [];
     }
     let prev = 0;
     for (let i = 0; i < logs.length; i++) {
-        let item = logs[i].split(":");
+        let item = logs[i].split(':');
         item[0] = Number(item[0]);
         item[2] = Number(item[2]);
-        if (item[1] === "start") {
+        if (item[1] === 'start') {
             if (stack.length) {
                 //funcTime[stack[stack.length - 1]] += item[2] - prev;
                 funcSumTime[stack[stack.length - 1]].push(item[2] - prev);
@@ -26,7 +26,7 @@ var exclusiveTime = function (n, logs) {
             funcTime[item[0]] = item[2];
             prev = item[2];
             //console.log("start", item, stack, funcTime, JSON.stringify(funcSumTime));
-        } else if (item[1] === "end") {
+        } else if (item[1] === 'end') {
             funcTime[stack[stack.length - 1]] = item[2] - prev + 1;
             funcSumTime[stack[stack.length - 1]].push(funcTime[stack[stack.length - 1]]);
             stack.pop();
@@ -35,7 +35,7 @@ var exclusiveTime = function (n, logs) {
         }
     }
     return funcSumTime.map((item, index) => {
-        return funcSumTime[index].reduce((accumulator, currentValue) => accumulator + currentValue)
+        return funcSumTime[index].reduce((accumulator, currentValue) => accumulator + currentValue);
     });
 };
 

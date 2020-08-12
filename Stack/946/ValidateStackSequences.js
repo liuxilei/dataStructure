@@ -10,7 +10,7 @@ var validateStackSequences = function (pushed, popped) {
         let item = pushed[i];
         stack.push(item);
         (function f(stack, popped) {
-            if ((stack[stack.length - 1] === popped[init] && init <= popped.length - 1)) {
+            if (stack[stack.length - 1] === popped[init] && init <= popped.length - 1) {
                 stack.pop();
                 init++;
                 f(stack, popped);

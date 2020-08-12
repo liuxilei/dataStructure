@@ -2,10 +2,10 @@
  * @param {number[]} T
  * @return {number[]}
  */
-var dailyTemperatures = function(T) {
+var dailyTemperatures = function (T) {
     const stack = [];
-    for (let i = 0;i < T.length;i++) {
-        for (let j = i;j < T.length;j++) {
+    for (let i = 0; i < T.length; i++) {
+        for (let j = i; j < T.length; j++) {
             if (T[j] > T[i]) {
                 stack.push(j - i);
                 break;

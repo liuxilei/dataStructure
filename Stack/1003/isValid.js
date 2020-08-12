@@ -1,8 +1,8 @@
-var isValid = function(S) {
+var isValid = function (S) {
     const stack = [];
-    for (let i = 0;i < S.length;i++) {
+    for (let i = 0; i < S.length; i++) {
         let item = S[i];
-        if (stack[stack.length - 1] === "b" && stack[stack.length - 2] === "a" && item === "c") {
+        if (stack[stack.length - 1] === 'b' && stack[stack.length - 2] === 'a' && item === 'c') {
             stack.pop();
             stack.pop();
         } else {

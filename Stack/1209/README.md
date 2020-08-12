@@ -8,8 +8,6 @@ Return the final string after all such duplicate removals have been made.
 
 It is guaranteed that the answer is unique.
 
- 
-
 **Example 1:**
 
     Input: s = "abcd", k = 2
@@ -20,7 +18,7 @@ It is guaranteed that the answer is unique.
 
     Input: s = "deeedbbcccbdaa", k = 3
     Output: "aa"
-    Explanation: 
+    Explanation:
     First delete "eee" and "ccc", get "ddbbbdaa"
     Then delete "bbb", get "dddaa"
     Finally delete "ddd", get "aa"
@@ -29,18 +27,16 @@ It is guaranteed that the answer is unique.
 
     Input: s = "pbbcggttciiippooaais", k = 2
     Output: "ps"
- 
 
 **Constraints:**
 
-- 1 <= s.length <= 10^5
-- 2 <= k <= 10^4
-- s only contains lower case English letters.
+-   1 <= s.length <= 10^5
+-   2 <= k <= 10^4
+-   s only contains lower case English letters.
 
---- 
+---
 
 ## 删除字符串中的所有相邻重复项 II
-
 
 给你一个字符串 `s`，「`k` 倍重复项删除操作」将会从 `s` 中选择 `k` 个相邻且相等的字母，并删除它们，使被删去的字符串的左侧和右侧连在一起。
 
@@ -49,8 +45,6 @@ It is guaranteed that the answer is unique.
 在执行完所有删除操作后，返回最终得到的字符串。
 
 本题答案保证唯一。
-
- 
 
 **示例 1：**
 
@@ -62,7 +56,7 @@ It is guaranteed that the answer is unique.
 
     输入：s = "deeedbbcccbdaa", k = 3
     输出："aa"
-    解释： 
+    解释：
     先删除 "eee" 和 "ccc"，得到 "ddbbbdaa"
     再删除 "bbb"，得到 "dddaa"
     最后删除 "ddd"，得到 "aa"
@@ -71,13 +65,12 @@ It is guaranteed that the answer is unique.
 
     输入：s = "pbbcggttciiippooaais", k = 2
     输出："ps"
- 
 
 **提示：**
 
-- 1 <= s.length <= 10^5
-- 2 <= k <= 10^4
-- s 中只含有小写英文字母。
+-   1 <= s.length <= 10^5
+-   2 <= k <= 10^4
+-   s 中只含有小写英文字母。
 
 ## My Solution
 
@@ -87,37 +80,37 @@ It is guaranteed that the answer is unique.
  * @param {number} k
  * @return {string}
  */
-var removeDuplicates = function(s, k) {
+var removeDuplicates = function (s, k) {
     const stack = [];
-    for (let i = 0;i < s.length;i++) {
+    for (let i = 0; i < s.length; i++) {
         let item = s[i];
-        if (stack[stack.length - 1] && item === stack[stack.length - 1].split("")[0]) {
+        if (stack[stack.length - 1] && item === stack[stack.length - 1].split('')[0]) {
             stack[stack.length - 1] += item;
-            if (stack[stack.length - 1] === stack[stack.length - 1].split("")[0].repeat(k)) {
+            if (stack[stack.length - 1] === stack[stack.length - 1].split('')[0].repeat(k)) {
                 stack.pop();
             }
         } else {
             stack.push(item);
         }
     }
-    return stack.join("");
+    return stack.join('');
 };
 ```
 
 ## Others
 
 ```javascript
-var removeDuplicates = function(s, k) {
-    let stack = []
-    for(let c of s) {
-        let prev = stack.pop()
-        if(!prev || prev[0] !== c) {
-            stack.push(prev)
-            stack.push(c)
-        } else if(prev.length < k-1) {
-            stack.push(prev+c)
+var removeDuplicates = function (s, k) {
+    let stack = [];
+    for (let c of s) {
+        let prev = stack.pop();
+        if (!prev || prev[0] !== c) {
+            stack.push(prev);
+            stack.push(c);
+        } else if (prev.length < k - 1) {
+            stack.push(prev + c);
         }
     }
-    return stack.join('')
+    return stack.join('');
 };
 ```

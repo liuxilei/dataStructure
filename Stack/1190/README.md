@@ -1,12 +1,10 @@
 ## Reverse Substrings Between Each Pair of Parentheses
 
-You are given a string `s` that consists of lower case English letters and brackets. 
+You are given a string `s` that consists of lower case English letters and brackets.
 
 Reverse the strings in each pair of matching parentheses, starting from the innermost one.
 
 Your result should `not` contain any brackets.
-
- 
 
 **Example 1:**
 
@@ -29,25 +27,22 @@ Your result should `not` contain any brackets.
 
     Input: s = "a(bcdefghijkl(mno)p)q"
     Output: "apmnolkjihgfedcbq"
- 
 
 **Constraints:**
 
-- 0 <= s.length <= 2000
-- s only contains lower case English characters and parentheses.
-- It's guaranteed that all parentheses are balanced.
+-   0 <= s.length <= 2000
+-   s only contains lower case English characters and parentheses.
+-   It's guaranteed that all parentheses are balanced.
 
---- 
+---
 
 ## 反转每对括号间的子串
 
-给出一个字符串 `s`（仅含有小写英文字母和括号）。
+给出一个字符串  `s`（仅含有小写英文字母和括号）。
 
 请你按照从括号内到外的顺序，逐层反转每对匹配括号中的字符串，并返回最终的结果。
 
 注意，您的结果中 `不应` 包含任何括号。
-
- 
 
 **示例 1：**
 
@@ -68,15 +63,14 @@ Your result should `not` contain any brackets.
 
     输入：s = "a(bcdefghijkl(mno)p)q"
     输出："apmnolkjihgfedcbq"
- 
 
 **提示：**
 
-- 0 <= s.length <= 2000
-- s 中只有小写英文字母和括号
-- 我们确保所有括号都是成对出现的
+-   0 <= s.length <= 2000
+-   s 中只有小写英文字母和括号
+-   我们确保所有括号都是成对出现的
 
-## Others 
+## Others
 
 #### 思路
 
@@ -90,15 +84,15 @@ Your result should `not` contain any brackets.
  * @param {string} s
  * @return {string}
  */
-var reverseParentheses = function(s) {
-    const stack = [""];
-    for (let i = 0;i < s.length;i++) {
+var reverseParentheses = function (s) {
+    const stack = [''];
+    for (let i = 0; i < s.length; i++) {
         let item = s[i];
-        if (item === "(") {
-            stack.push("");
-        } else if (item === ")") {
+        if (item === '(') {
+            stack.push('');
+        } else if (item === ')') {
             let top = stack.pop();
-            let temp = top.split("").reverse().join("");
+            let temp = top.split('').reverse().join('');
             stack[stack.length - 1] += temp;
         } else {
             stack[stack.length - 1] += item;

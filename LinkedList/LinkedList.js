@@ -1,6 +1,6 @@
 //单向链表
 function LinkedList() {
-    var Node = function(element) {
+    var Node = function (element) {
         this.element = element;
         this.next = null;
     };
@@ -9,13 +9,13 @@ function LinkedList() {
     //第一个节点的引用
     var head = null;
     //向列表尾部添加一个新的项
-    this.append = function(element) {
+    this.append = function (element) {
         //实例一个当前插入节点
         var node = new Node(element), //链表最后一个节点的next始终为null
             current; //遍历链表中的每一项时候，声明
         //当链表为空的时候，第一个节点的指向指向插入当前插入节点
         if (head === null) {
-            head = node; 
+            head = node;
         } else {
             current = head;
             while (current.next) {
@@ -26,7 +26,7 @@ function LinkedList() {
         length++;
     };
     //向列表的特定位置插入一个新的项
-    this.insert = function(position, element) {
+    this.insert = function (position, element) {
         //检查越界值
         if (position >= 0 && position <= length) {
             var node = new Node(element),
@@ -55,7 +55,7 @@ function LinkedList() {
         }
     };
     //从列表的特定位置移出一项
-    this.removeAt = function(position) {
+    this.removeAt = function (position) {
         //先检测要移除位置是否正确
         if (position > -1 && position < length) {
             var current = head,
@@ -80,14 +80,14 @@ function LinkedList() {
         }
     };
     //从列表中移除一项
-    this.remove = function(element) {
+    this.remove = function (element) {
         var index = this.indexOf(element);
         return this.removeAt(index);
     };
     //返回元素在列表中的索引
-    this.indexOf = function(element) {
+    this.indexOf = function (element) {
         var current = head;
-            index = 0;
+        index = 0;
         while (current) {
             if (element === current.element) {
                 return index;
@@ -98,27 +98,27 @@ function LinkedList() {
         return -1;
     };
     //判断链表是否为空
-    this.isEmpty = function() {
+    this.isEmpty = function () {
         return length === 0;
     };
     //返回链表包含的元素个数
-    this.size = function() {
+    this.size = function () {
         return length;
     };
     //输出元素的值
-    this.toString = function() {
+    this.toString = function () {
         var current = head,
-            string = "";
+            string = '';
         while (current) {
-            string += " " + current.element;
+            string += ' ' + current.element;
             current = current.next;
         }
         return string;
     };
     //获取链表第一个元素
-    this.getHead = function() {
+    this.getHead = function () {
         return head;
-    }
+    };
 }
 
 // var list = new LinkedList();
@@ -139,31 +139,31 @@ function LinkedList() {
 // list.append(111);
 // console.log(list.indexOf(111));
 
-
 //双向链表
 function DoublyLinkedList() {
-    var Node = function(element) {
+    var Node = function (element) {
         this.element = element;
         this.next = null;
         this.prev = null;
-    }
+    };
     var length = 0;
     var head = null;
     var tail = null; //链表最后一项
     //向任意位置插入一个新元素的算法
-    this.insert = function(position, element) {
+    this.insert = function (position, element) {
         //检查越界值
         if (position >= 0 && position <= length) {
             var node = new Node(element),
                 current = head,
                 previous,
                 index = 0;
-            if (position === 0) { //在第一个位置添加
+            if (position === 0) {
+                //在第一个位置添加
                 //链表中是否有值
                 if (!head) {
                     head = node;
                     tail = node;
-                } else { 
+                } else {
                     //如果有值，当前新插入的节点next指向current(即之前的头部节点)，current(即之前的头部节点)prev指向当前node，
                     //然后再重新设置头部为当前节点
                     node.next = current;
@@ -198,7 +198,7 @@ function DoublyLinkedList() {
         }
     };
     //从任意位置移除元素
-    this.removeAt = function(position) {
+    this.removeAt = function (position) {
         //检查越界值
         if (position > -1 && position < length) {
             var current = head,
@@ -207,13 +207,14 @@ function DoublyLinkedList() {
             //移除第一项
             if (position === 0) {
                 head = current.next;
-                //如果只有一项，更新tail 
+                //如果只有一项，更新tail
                 if (length === 1) {
                     tail = null;
                 } else {
                     head.prev = null;
                 }
-            } else if (position === length - 1){ //最后一项
+            } else if (position === length - 1) {
+                //最后一项
                 current = tail;
                 tail = current.prev;
                 tail.next = null;
@@ -227,7 +228,7 @@ function DoublyLinkedList() {
                 current.next.prev = previous;
             }
             length--;
-            return current.element;     
+            return current.element;
         } else {
             return null;
         }

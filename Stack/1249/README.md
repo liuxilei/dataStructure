@@ -1,15 +1,14 @@
 ## Minimum Remove to Make Valid Parentheses
 
-Given a string s of `'('` , `')'` and lowercase English characters. 
+Given a string s of `'('` , `')'` and lowercase English characters.
 
 Your task is to remove the minimum number of parentheses ( `'('` or `')'`, in any positions ) so that the resulting parentheses string is valid and return `any` valid string.
 
 Formally, a parentheses string is valid if and only if:
 
-- It is the empty string, contains only lowercase characters, or
-- It can be written as AB (A concatenated with B), where A and B are valid strings, or
-- It can be written as (A), where A is a valid string.
- 
+-   It is the empty string, contains only lowercase characters, or
+-   It can be written as AB (A concatenated with B), where A and B are valid strings, or
+-   It can be written as (A), where A is a valid string.
 
 **Example 1:**
 
@@ -32,12 +31,11 @@ Formally, a parentheses string is valid if and only if:
 
     Input: s = "(a(b(c)d)"
     Output: "a(b(c)d)"
- 
 
 **Constraints:**
 
-- 1 <= s.length <= 10^5
-- s[i] is one of  '(' , ')' and lowercase English letters.
+-   1 <= s.length <= 10^5
+-   s[i] is one of  '(' , ')' and lowercase English letters.
 
 ---
 
@@ -49,12 +47,11 @@ Formally, a parentheses string is valid if and only if:
 
 请返回任意一个合法字符串。
 
-有效「括号字符串」应当符合以下 `任意一条` 要求：
+有效「括号字符串」应当符合以下  `任意一条`  要求：
 
-- 空字符串或只包含小写字母的字符串
-- 可以被写作 AB（A 连接 B）的字符串，其中 A 和 B 都是有效「括号字符串」
-- 可以被写作 (A) 的字符串，其中 A 是一个有效的「括号字符串」
- 
+-   空字符串或只包含小写字母的字符串
+-   可以被写作  AB（A  连接  B）的字符串，其中  A  和  B  都是有效「括号字符串」
+-   可以被写作  (A)  的字符串，其中  A  是一个有效的「括号字符串」
 
 **示例 1：**
 
@@ -77,12 +74,11 @@ Formally, a parentheses string is valid if and only if:
 
     输入：s = "(a(b(c)d)"
     输出："a(b(c)d)"
- 
 
 **提示：**
 
-- 1 <= s.length <= 10^5
-- s[i] 可能是 '('、')' 或英文小写字母
+-   1 <= s.length <= 10^5
+-   s[i]  可能是  '('、')'  或英文小写字母
 
 ## My Solution
 
@@ -91,18 +87,18 @@ Formally, a parentheses string is valid if and only if:
  * @param {string} s
  * @return {string}
  */
-var minRemoveToMakeValid = function(s) {
+var minRemoveToMakeValid = function (s) {
     const stack = [];
     const stackIndex = [];
     const stackIndex2 = [];
-    const stringArr = s.split("");
-    for (let i = 0;i < s.length;i++) {
+    const stringArr = s.split('');
+    for (let i = 0; i < s.length; i++) {
         let item = s[i];
-        if (item === "(") {
-            stack.push("(");
+        if (item === '(') {
+            stack.push('(');
             stackIndex.push(i);
-        } else if (item === ")") {
-            if (stack[stack.length - 1] === "(") {
+        } else if (item === ')') {
+            if (stack[stack.length - 1] === '(') {
                 stack.pop();
                 stackIndex.pop();
             } else {
@@ -112,10 +108,10 @@ var minRemoveToMakeValid = function(s) {
     }
     stringArr.map((item, index) => {
         if (stackIndex.includes(index) || stackIndex2.includes(index)) {
-            stringArr[index] = "";
+            stringArr[index] = '';
         }
     });
-    return stringArr.join("");
+    return stringArr.join('');
 };
 ```
 
@@ -149,18 +145,17 @@ var minRemoveToMakeValid = function (s) {
         }
         if (s[i] === ')') {
             if (stack.length > 0) {
-                stack.pop()
+                stack.pop();
             } else {
-                delete (arr[i])
+                delete arr[i];
             }
         }
     }
     while (stack.length) {
-        delete (arr[stack[0]]);
+        delete arr[stack[0]];
         stack.shift();
     }
-    arr = arr.filter(val => val);
-    return arr.join('')
+    arr = arr.filter((val) => val);
+    return arr.join('');
 };
 ```
-

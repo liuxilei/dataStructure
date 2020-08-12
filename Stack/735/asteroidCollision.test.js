@@ -1,7 +1,7 @@
-const asteroidCollision = require("./asteroidCollision");
+const asteroidCollision = require('./asteroidCollision');
 
-describe("行星碰撞", () => {
-    test("asteroidCollision", () => {
+describe('行星碰撞', () => {
+    test('asteroidCollision', () => {
         expect(asteroidCollision([5, 10, -5])).toEqual([5, 10]);
         expect(asteroidCollision([8, -8])).toEqual([]);
         expect(asteroidCollision([10, 2, -5])).toEqual([10]);

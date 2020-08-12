@@ -8,14 +8,14 @@ Each element is either an integer, or a list -- whose elements may also be integ
 
     Input: [[1,1],2,[1,1]]
     Output: [1,1,2,1,1]
-    Explanation: By calling next repeatedly until hasNext returns false, 
+    Explanation: By calling next repeatedly until hasNext returns false,
                  the order of elements returned by next should be: [1,1,2,1,1].
 
 **Example 2:**
 
     Input: [1,[4,[6]]]
     Output: [1,4,6]
-    Explanation: By calling next repeatedly until hasNext returns false, 
+    Explanation: By calling next repeatedly until hasNext returns false,
                  the order of elements returned by next should be: [1,4,6].
 
 ---
@@ -25,8 +25,6 @@ Each element is either an integer, or a list -- whose elements may also be integ
 给你一个嵌套的整型列表。请你设计一个迭代器，使其能够遍历这个整型列表中的所有整数。
 
 列表中的每一项或者为一个整数，或者是另一个列表。其中列表的元素也可能是整数或是其他列表。
-
- 
 
 **示例 1:**
 
@@ -43,6 +41,7 @@ Each element is either an integer, or a list -- whose elements may also be integ
 ### My Solution
 
 **注意这里整型列表的判定需要上面定义的接口去调用**
+
 ```javascript
 /**
  * // This is the interface that allows for creating nested lists.
@@ -74,10 +73,10 @@ Each element is either an integer, or a list -- whose elements may also be integ
  * @constructor
  * @param {NestedInteger[]} nestedList
  */
-var NestedIterator = function(nestedList) {
+var NestedIterator = function (nestedList) {
     this.stack = [];
     (function f(stack, arr) {
-        for (let i = 0;i < arr.length;i++) {
+        for (let i = 0; i < arr.length; i++) {
             if (arr[i].isInteger()) {
                 stack.push(arr[i].getInteger());
             } else {
@@ -87,12 +86,11 @@ var NestedIterator = function(nestedList) {
     })(this.stack, nestedList);
 };
 
-
 /**
  * @this NestedIterator
  * @returns {boolean}
  */
-NestedIterator.prototype.hasNext = function() {
+NestedIterator.prototype.hasNext = function () {
     return this.stack.length > 0;
 };
 
@@ -100,7 +98,7 @@ NestedIterator.prototype.hasNext = function() {
  * @this NestedIterator
  * @returns {integer}
  */
-NestedIterator.prototype.next = function() {
+NestedIterator.prototype.next = function () {
     if (this.hasNext()) {
         return this.stack.shift();
     } else {
@@ -112,9 +110,5 @@ NestedIterator.prototype.next = function() {
  * Your NestedIterator will be called like this:
  * var i = new NestedIterator(nestedList), a = [];
  * while (i.hasNext()) a.push(i.next());
-*/
+ */
 ```
-
-
-
-

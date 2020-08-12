@@ -2,27 +2,27 @@
 function Queue() {
     var items = [];
     //向队伍尾部添加一个新的项
-    this.enqueue = function(element) {
+    this.enqueue = function (element) {
         items.push(element);
     };
     //移除队列的第一项，并返回被移除的元素
-    this.dequeue = function() {
+    this.dequeue = function () {
         return items.shift();
     };
     //返回队列中的第一个元素
-    this.front = function() {
+    this.front = function () {
         return items[0];
     };
     //队列是否为空
-    this.isEmpty = function() {
+    this.isEmpty = function () {
         return items.length === 0;
     };
     //队列包含的元素个数
-    this.size = function() {
+    this.size = function () {
         return items.length;
     };
     //打印
-    this.print = function() {
+    this.print = function () {
         console.log(items.toString());
     };
 }
@@ -46,18 +46,18 @@ function PriorityQueue() {
         this.priority = priority;
     }
 
-    this.isEmpty = function() {
+    this.isEmpty = function () {
         return items.length === 0;
-    }
+    };
 
-    this.enqueue = function(element, priority) {
+    this.enqueue = function (element, priority) {
         var queueElement = new QueueElement(element, priority);
 
         if (this.isEmpty()) {
             items.push(queueElement);
         } else {
             var added = false;
-            for (var i = 0;i < items.length;i++) {
+            for (var i = 0; i < items.length; i++) {
                 if (queueElement.priority < items[i].priority) {
                     items.splice(i, 0, queueElement);
                     added = true;
@@ -68,8 +68,8 @@ function PriorityQueue() {
                 items.push(queueElement);
             }
         }
-    }
-    this.print = function() {
+    };
+    this.print = function () {
         console.log(JSON.stringify(items));
     };
 }
@@ -86,16 +86,16 @@ function PriorityQueue() {
  */
 function hotPotato(nameList, num) {
     var queue = new Queue();
-    for (var i = 0;i < nameList.length;i++) {
+    for (var i = 0; i < nameList.length; i++) {
         queue.enqueue(nameList[i]);
     }
-    var eliminated = "";
-    while(queue.size() > 1) {
-        for (var i = 0;i < num;i++) {
+    var eliminated = '';
+    while (queue.size() > 1) {
+        for (var i = 0; i < num; i++) {
             queue.enqueue(queue.dequeue());
         }
         eliminated = queue.dequeue();
-        console.log(eliminated + "在击鼓传花游戏中被淘汰。");
+        console.log(eliminated + '在击鼓传花游戏中被淘汰。');
     }
     return queue.dequeue();
 }

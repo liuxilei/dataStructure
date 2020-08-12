@@ -6,17 +6,15 @@ Each element is either an integer, or a list -- whose elements may also be integ
 
 **Note:** You may assume that the string is well-formed:
 
-- String is non-empty.
-- String does not contain white spaces.
-- String contains only digits 0-9, [, - ,, ].
- 
+-   String is non-empty.
+-   String does not contain white spaces.
+-   String contains only digits 0-9, [, - ,, ].
 
 **Example 1:**
 
     Given s = "324",
 
     You should return a NestedInteger object which contains a single integer 324.
- 
 
 **Example 2:**
 
@@ -40,17 +38,15 @@ Each element is either an integer, or a list -- whose elements may also be integ
 
 **提示：**你可以假定这些字符串都是格式良好的：
 
-- 字符串非空
-- 字符串不包含空格
-- 字符串只包含数字0-9, [, - ,, ]
- 
+-   字符串非空
+-   字符串不包含空格
+-   字符串只包含数字 0-9, [, - ,, ]
 
 **示例 1：**
 
     给定 s = "324",
 
     你应该返回一个 NestedInteger 对象，其中只包含整数值 324。
- 
 
 **示例 2：**
 
@@ -111,21 +107,21 @@ Each element is either an integer, or a list -- whose elements may also be integ
  */
 var deserialize = function (s) {
     let stack = [];
-    let num = "";
+    let num = '';
 
-    if (s[0] !== "[") {
+    if (s[0] !== '[') {
         let i = new NestedInteger();
         i.setInteger(Number(s));
         return i;
     }
 
-    for (let i = 0;i < s.length;i++) {
+    for (let i = 0; i < s.length; i++) {
         let item = s[i];
-        if (item === "[") {
+        if (item === '[') {
             stack.push(new NestedInteger());
         }
 
-        if (item === "-") {
+        if (item === '-') {
             num += item;
         }
 
@@ -135,11 +131,11 @@ var deserialize = function (s) {
                 let i = new NestedInteger();
                 i.setInteger(Number(num));
                 stack[stack.length - 1].add(i);
-                num = "";
+                num = '';
             }
         }
 
-        if (item === "]") {
+        if (item === ']') {
             let i = stack.pop();
             if (stack.length > 0) {
                 stack[stack.length - 1].add(i);

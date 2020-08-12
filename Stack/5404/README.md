@@ -4,22 +4,19 @@ Given an array `target` and an integer `n.` In each iteration, you will read a 
 
 Build the target array using the following operations:
 
-- `Push`: Read a new element from the beginning `list`, and push it in the array.
-- `Pop`: delete the last element of the array.
-- If the target array is already built, stop reading more elements.
-You are guaranteed that the target array is strictly increasing, only containing numbers between 1 to n inclusive.
+-   `Push`: Read a new element from the beginning `list`, and push it in the array.
+-   `Pop`: delete the last element of the array.
+-   If the target array is already built, stop reading more elements. You are guaranteed that the target array is strictly increasing, only containing numbers between 1 to n inclusive.
 
 Return the operations to build the target array.
 
 You are guaranteed that the answer is unique.
 
- 
-
 **Example 1:**
 
     Input: target = [1,3], n = 3
     Output: ["Push","Push","Pop","Push"]
-    Explanation: 
+    Explanation:
     Read number 1 and automatically push in the array -> [1]
     Read number 2 and automatically push in the array then Pop it -> [1]
     Read number 3 and automatically push in the array -> [1,3]
@@ -39,39 +36,35 @@ You are guaranteed that the answer is unique.
 
     Input: target = [2,3,4], n = 4
     Output: ["Push","Pop","Push","Push","Push"]
- 
 
 **Constraints:**
 
-- 1 <= target.length <= 100
-- 1 <= target[i] <= 100
-- 1 <= n <= 100
-- target is strictly increasing.
+-   1 <= target.length <= 100
+-   1 <= target[i] <= 100
+-   1 <= n <= 100
+-   target is strictly increasing.
 
-----
+---
 
 ## 用栈操作构建数组
 
-给你一个目标数组 `target` 和一个整数 `n`。每次迭代，需要从  `list = {1,2,3..., n}` 中依序读取一个数字。
+给你一个目标数组 `target` 和一个整数 `n`。每次迭代，需要从   `list = {1,2,3..., n}` 中依序读取一个数字。
 
 请使用下述操作来构建目标数组 `target` ：
 
-- Push：从 list 中读取一个新元素， 并将其推入数组中。
-- Pop：删除数组中的最后一个元素。
-- 如果目标数组构建完成，就停止读取更多元素。
-题目数据保证目标数组严格递增，并且只包含 1 到 n 之间的数字。
+-   Push：从 list 中读取一个新元素， 并将其推入数组中。
+-   Pop：删除数组中的最后一个元素。
+-   如果目标数组构建完成，就停止读取更多元素。题目数据保证目标数组严格递增，并且只包含 1 到 n 之间的数字。
 
 请返回构建目标数组所用的操作序列。
 
 题目数据保证答案是唯一的。
 
- 
-
 **示例 1：**
 
     输入：target = [1,3], n = 3
     输出：["Push","Push","Pop","Push"]
-    解释： 
+    解释：
     读取 1 并自动推入数组 -> [1]
     读取 2 并自动推入数组，然后删除它 -> [1]
     读取 3 并自动推入数组 -> [1,3]
@@ -91,14 +84,13 @@ You are guaranteed that the answer is unique.
 
     输入：target = [2,3,4], n = 4
     输出：["Push","Pop","Push","Push","Push"]
- 
 
 **提示：**
 
-- 1 <= target.length <= 100
-- 1 <= target[i] <= 100
-- 1 <= n <= 100
-- target 是严格递增的
+-   1 <= target.length <= 100
+-   1 <= target[i] <= 100
+-   1 <= n <= 100
+-   target 是严格递增的
 
 ### MySolution
 
@@ -113,21 +105,22 @@ var buildArray = function (target, n) {
     let operate = [];
     for (let i = 1; i <= n; i++) {
         temp.push(i);
-        operate.push("Push");
+        operate.push('Push');
     }
     for (let i = 0; i < target.length; i++) {
         (function f(i) {
             if (target[i] !== temp[i]) {
-                operate[temp[i] - 1] = "Push,Pop";
+                operate[temp[i] - 1] = 'Push,Pop';
                 temp.splice(i, 1);
                 f(i);
             }
-        })(i)
+        })(i);
     }
     operate.length = target[target.length - 1];
-    return operate.join(",").split(",");
+    return operate.join(',').split(',');
 };
 ```
 
 ### 解题思路
-按顺序从1开始push一直到目标数组最大值的，如果哪个值与目标位置不一致，说明该位置是需要两次操作，push+pop的，所以只要把对应位置的push改为push,pop即可。
+
+按顺序从 1 开始 push 一直到目标数组最大值的，如果哪个值与目标位置不一致，说明该位置是需要两次操作，push+pop 的，所以只要把对应位置的 push 改为 push,pop 即可。

@@ -17,10 +17,10 @@ You need to return the sum of the points you could get in all the rounds.
 
     Input: ["5","2","C","D","+"]
     Output: 30
-    Explanation: 
+    Explanation:
     Round 1: You could get 5 points. The sum is: 5.
     Round 2: You could get 2 points. The sum is: 7.
-    Operation 1: The round 2's data was invalid. The sum is: 5.  
+    Operation 1: The round 2's data was invalid. The sum is: 5.
     Round 3: You could get 10 points (the round 2's data has been removed). The sum is: 15.
     Round 4: You could get 5 + 10 = 15 points. The sum is: 30.
 
@@ -28,39 +28,39 @@ You need to return the sum of the points you could get in all the rounds.
 
     Input: ["5","-2","4","C","D","9","+","+"]
     Output: 27
-    Explanation: 
+    Explanation:
     Round 1: You could get 5 points. The sum is: 5.
     Round 2: You could get -2 points. The sum is: 3.
     Round 3: You could get 4 points. The sum is: 7.
-    Operation 1: The round 3's data is invalid. The sum is: 3.  
+    Operation 1: The round 3's data is invalid. The sum is: 3.
     Round 4: You could get -4 points (the round 3's data has been removed). The sum is: -1.
     Round 5: You could get 9 points. The sum is: 8.
     Round 6: You could get -4 + 9 = 5 points. The sum is 13.
     Round 7: You could get 9 + 5 = 14 points. The sum is 27.
 
 **Note:**
-- The size of the input list will be between 1 and 1000.
-- Every integer represented in the list will be between -30000 and 30000.
 
---- 
+-   The size of the input list will be between 1 and 1000.
+-   Every integer represented in the list will be between -30000 and 30000.
+
+---
 
 ### 棒球比赛
 
-你现在是棒球比赛记录员。
-给定一个字符串列表，每个字符串可以是以下四种类型之一：
-1. `整数`（一轮的得分）：直接表示您在本轮中获得的积分数。
-2. `"+"`（一轮的得分）：表示本轮获得的得分是前两轮有效 回合得分的总和。
-3. `"D"`（一轮的得分）：表示本轮获得的得分是前一轮有效 回合得分的两倍。
-4. `"C"`（一个操作，这不是一个回合的分数）：表示您获得的最后一个有效 回合的分数是无效的，应该被移除。
+你现在是棒球比赛记录员。给定一个字符串列表，每个字符串可以是以下四种类型之一：
 
-每一轮的操作都是永久性的，可能会对前一轮和后一轮产生影响。
-你需要返回你在所有回合中得分的总和。
+1. `整数`（一轮的得分）：直接表示您在本轮中获得的积分数。
+2. `"+"`（一轮的得分）：表示本轮获得的得分是前两轮有效   回合得分的总和。
+3. `"D"`（一轮的得分）：表示本轮获得的得分是前一轮有效   回合得分的两倍。
+4. `"C"`（一个操作，这不是一个回合的分数）：表示您获得的最后一个有效   回合的分数是无效的，应该被移除。
+
+每一轮的操作都是永久性的，可能会对前一轮和后一轮产生影响。你需要返回你在所有回合中得分的总和。
 
 **示例 1:**
 
     输入: ["5","2","C","D","+"]
     输出: 30
-    解释: 
+    解释:
     第1轮：你可以得到5分。总和是：5。
     第2轮：你可以得到2分。总和是：7。
     操作1：第2轮的数据无效。总和是：5。
@@ -71,7 +71,7 @@ You need to return the sum of the points you could get in all the rounds.
 
     输入: ["5","-2","4","C","D","9","+","+"]
     输出: 27
-    解释: 
+    解释:
     第1轮：你可以得到5分。总和是：5。
     第2轮：你可以得到-2分。总数是：3。
     第3轮：你可以得到4分。总和是：7。
@@ -83,8 +83,8 @@ You need to return the sum of the points you could get in all the rounds.
 
 **注意：**
 
-- 输入列表的大小将介于1和1000之间。
-- 列表中的每个整数都将介于-30000和30000之间。
+-   输入列表的大小将介于 1 和 1000 之间。
+-   列表中的每个整数都将介于-30000 和 30000 之间。
 
 ### My Solution
 
@@ -96,12 +96,12 @@ You need to return the sum of the points you could get in all the rounds.
 var calPoints = function (ops) {
     let stack = [];
     for (let i = 0; i < ops.length; i++) {
-        if (["+", "D", "C"].includes(ops[i])) {
-            if (ops[i] === "+") {
+        if (['+', 'D', 'C'].includes(ops[i])) {
+            if (ops[i] === '+') {
                 stack.push(stack[stack.length - 2] + stack[stack.length - 1]);
-            } else if (ops[i] === "D") {
+            } else if (ops[i] === 'D') {
                 stack.push(2 * stack[stack.length - 1]);
-            } else if (ops[i] === "C") {
+            } else if (ops[i] === 'C') {
                 stack.pop();
             }
         } else {
@@ -119,19 +119,20 @@ var calPoints = function (ops) {
 var calPoints = function (ops) {
     let arr = [];
     let opera = {
-        "+": function () {
-            let total = arr.length > 1 ? Number(arr[arr.length - 1]) + Number(arr[arr.length - 2]) : arr[0];
+        '+': function () {
+            let total =
+                arr.length > 1 ? Number(arr[arr.length - 1]) + Number(arr[arr.length - 2]) : arr[0];
             arr.push(total);
         },
-        "D": function () {
-            arr.length && arr.push(arr[arr.length - 1] * 2)
+        D: function () {
+            arr.length && arr.push(arr[arr.length - 1] * 2);
         },
-        "C": function () {
+        C: function () {
             arr.pop();
         },
-        'in': function (item) {
+        in: function (item) {
             arr.push(item);
-        }
+        },
     };
 
     ops.forEach((item) => {
@@ -140,7 +141,7 @@ var calPoints = function (ops) {
         } else {
             opera.in(item);
         }
-    })
-    return arr.reduce((total, num) => Number(total) + Number(num))
+    });
+    return arr.reduce((total, num) => Number(total) + Number(num));
 };
 ```

@@ -1,16 +1,16 @@
 /**
  * @param {number} maxSize
  */
-var CustomStack = function(maxSize) {
+var CustomStack = function (maxSize) {
     this.stack = [];
     this.maxSize = maxSize;
 };
 
-/** 
+/**
  * @param {number} x
  * @return {void}
  */
-CustomStack.prototype.push = function(x) {
+CustomStack.prototype.push = function (x) {
     if (this.stack.length < this.maxSize) {
         this.stack.push(x);
     }
@@ -19,7 +19,7 @@ CustomStack.prototype.push = function(x) {
 /**
  * @return {number}
  */
-CustomStack.prototype.pop = function() {
+CustomStack.prototype.pop = function () {
     if (this.stack.length > 0) {
         return this.stack.pop();
     } else {
@@ -27,13 +27,13 @@ CustomStack.prototype.pop = function() {
     }
 };
 
-/** 
- * @param {number} k 
+/**
+ * @param {number} k
  * @param {number} val
  * @return {void}
  */
-CustomStack.prototype.increment = function(k, val) {
-    for (let i = 0,len = this.stack.length,length = k > len ? len : k;i < length;i++) {
+CustomStack.prototype.increment = function (k, val) {
+    for (let i = 0, len = this.stack.length, length = k > len ? len : k; i < length; i++) {
         this.stack[i] += val;
     }
 };

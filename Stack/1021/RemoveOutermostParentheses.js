@@ -13,7 +13,7 @@ var removeOuterParentheses = function (S) {
     //记录上次截取的位置
     let primitivePosition = 0;
     for (let i = 0; i < S.length; i++) {
-        if (S[i] === "(") {
+        if (S[i] === '(') {
             stack.push(S[i]);
         } else {
             stack.pop();
@@ -24,7 +24,7 @@ var removeOuterParentheses = function (S) {
             }
         }
     }
-    return targetList.join("");
+    return targetList.join('');
 };
 module.exports = removeOuterParentheses;
 
@@ -41,22 +41,21 @@ var removeOuterParentheses2 = function (S) {
     let stack = [];
     for (let i = 0; i < len; i++) {
         if (stack.length == 0) {
-            stack.push(S[i])
+            stack.push(S[i]);
             l = i;
         } else {
             if (S[i] == ')') {
-                stack.pop()
+                stack.pop();
                 if (stack.length == 0) {
                     r = i;
                     // substring(start,end)  切割的为[start,end)
                     ret += S.substring(l + 1, r);
                 }
             } else {
-                stack.push(S[i])
+                stack.push(S[i]);
             }
             // console.log(stack)
         }
     }
-    return ret
+    return ret;
 };
-

@@ -8,13 +8,11 @@ If for example `S = "abc"`, then examples of valid strings are: `"abc"`, `"aabcb
 
 Return `true` if and only if the given string `S` is valid.
 
- 
-
 **Example 1:**
 
     Input: "aabcbc"
     Output: true
-    Explanation: 
+    Explanation:
     We start with the valid string "abc".
     Then we can insert another "abc" between "a" and "bc", resulting in "a" + "abc" + "bc" which is "aabcbc".
 
@@ -22,7 +20,7 @@ Return `true` if and only if the given string `S` is valid.
 
     Input: "abcabcababcc"
     Output: true
-    Explanation: 
+    Explanation:
     "abcabcabc" is valid after consecutive insertings of "abc".
     Then we can insert "abc" before the last letter, resulting in "abcabcab" + "abc" + "c" which is "abcabcababcc".
 
@@ -35,7 +33,6 @@ Return `true` if and only if the given string `S` is valid.
 
     Input: "cababc"
     Output: false
- 
 
 **Note:**
 
@@ -46,15 +43,13 @@ Return `true` if and only if the given string `S` is valid.
 
 ## 检查替换后的词是否有效
 
-给定有效字符串 `"abc"`。
+给定有效字符串  `"abc"`。
 
-对于任何有效的字符串 `V`，我们可以将 `V` 分成两个部分 `X` 和 `Y`，使得 `X + Y`（`X` 与 `Y` 连接）等于 `V`。（`X` 或 `Y` 可以为空。）那么，`X + "abc" + Y` 也同样是有效的。
+对于任何有效的字符串 `V`，我们可以将 `V` 分成两个部分 `X` 和 `Y`，使得 `X + Y`（`X` 与 `Y` 连接）等于 `V`。（`X`  或 `Y` 可以为空。）那么，`X + "abc" + Y` 也同样是有效的。
 
 例如，如果 `S = "abc"`，则有效字符串的示例是：`"abc"`，`"aabcbc"`，`"abcabc"`，`"abcabcababcc"`。无效字符串的示例是：`"abccba"`，`"ab"`，`"cababc"`，`"bac"`。
 
 如果给定字符串 `S` 有效，则返回 `true`；否则，返回 `false`。
-
- 
 
 **示例 1：**
 
@@ -81,12 +76,11 @@ Return `true` if and only if the given string `S` is valid.
 
     输入："cababc"
     输出：false
- 
 
 **提示：**
 
 1. 1 <= S.length <= 20000
-2. S[i] 为 'a'、'b'、或 'c'
+2. S[i] 为  'a'、'b'、或  'c'
 
 ## My Solution
 
@@ -95,11 +89,11 @@ Return `true` if and only if the given string `S` is valid.
  * @param {string} S
  * @return {boolean}
  */
-var isValid = function(S) {
+var isValid = function (S) {
     const stack = [];
-    for (let i = 0;i < S.length;i++) {
+    for (let i = 0; i < S.length; i++) {
         let item = S[i];
-        if (stack[stack.length - 1] === "b" && stack[stack.length - 2] === "a" && item === "c") {
+        if (stack[stack.length - 1] === 'b' && stack[stack.length - 2] === 'a' && item === 'c') {
             stack.pop();
             stack.pop();
         } else {
@@ -118,24 +112,24 @@ var isValid = function(S) {
  * @return {boolean}
  */
 // 递归 64ms
-var isValid = function(S) {
-    S=S.replace(/abc/g,'');
-    if(S.includes('abc')){
-        return isValid(S)
+var isValid = function (S) {
+    S = S.replace(/abc/g, '');
+    if (S.includes('abc')) {
+        return isValid(S);
     }
-    return !!!S.length //!!表示转布尔值
+    return !!!S.length; //!!表示转布尔值
 };
 // 栈 148 ms
-var isValid = function(S) {
-    let stack=[];
-    for(item of S){
+var isValid = function (S) {
+    let stack = [];
+    for (item of S) {
         stack.push(item);
-        const {length}=stack;
-        if(stack[length-1]==='c'&&stack[length-2]==='b'&&stack[length-3]==='a'){
-            stack=stack.slice(0,-3);
+        const { length } = stack;
+        if (stack[length - 1] === 'c' && stack[length - 2] === 'b' && stack[length - 3] === 'a') {
+            stack = stack.slice(0, -3);
         }
     }
-    return !!!stack.length
+    return !!!stack.length;
 };
-isValid("aabcbc")
+isValid('aabcbc');
 ```

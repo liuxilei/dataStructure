@@ -24,7 +24,7 @@ Furthermore, you may assume that the original data does not contain any digits a
 
 你可以认为输入字符串总是有效的；输入字符串中没有额外的空格，且输入的方括号总是符合格式要求的。
 
-此外，你可以认为原始数据不包含数字，所有的数字只表示重复的次数 k ，例如不会出现像 `3a` 或 `2[4]` 的输入。
+此外，你可以认为原始数据不包含数字，所有的数字只表示重复的次数 k ，例如不会出现像  `3a`  或  `2[4]`  的输入。
 
 **示例:**
 
@@ -32,15 +32,14 @@ Furthermore, you may assume that the original data does not contain any digits a
     s = "3[a2[c]]", 返回 "accaccacc".
     s = "2[abc]3[cd]ef", 返回 "abcabccdcdcdef".
 
-
 ## Others
 
 ```javascript
 function convertString(str) {
-  const reg = /(\d+)\[([^\[\]]+)\]/g;
-  const res = str.replace(reg, (match, p1, p2) => p2.repeat(p1));
-  return reg.test(res) ? convertString(res): res;
-};
+    const reg = /(\d+)\[([^\[\]]+)\]/g;
+    const res = str.replace(reg, (match, p1, p2) => p2.repeat(p1));
+    return reg.test(res) ? convertString(res) : res;
+}
 ```
 
 ```javascript
@@ -48,33 +47,33 @@ function convertString(str) {
  * 答案二: 精简模式，用reduce实现
  */
 function convertString(str) {
-  const TYPES = { NU: 1, CH: 2, LB: 3, RB: 4, '[': 3, ']': 4 };
-  const { NU, CH, LB, RB } = TYPES;
-  const type = (str) => (TYPES[str[0]] || isNaN(str[0]) ? CH : NU);
-  return str
-    .split('')
-    .reduce(
-      ({ stack, tmp, prevType }, ch) => {
-        const t = type(ch);
-        if (tmp && t !== prevType) {
-          stack.push(tmp);
-          tmp = '';
-        }
-        if (t === RB) {
-          let str = '';
-          let lb;
-          while ((lb = stack.pop()) !== '[') str = `${lb}${str}`;
-          stack.push(str.repeat(+stack.pop()));
-        } else if (t === LB) {
-          stack.push('[');
-        } else {
-          tmp += ch;
-        }
-        return { stack, tmp, prevType: t };
-      },
-      { stack: [], tmp: '', prevType: null }
-    )
-    .stack.join('');
+    const TYPES = { NU: 1, CH: 2, LB: 3, RB: 4, '[': 3, ']': 4 };
+    const { NU, CH, LB, RB } = TYPES;
+    const type = (str) => (TYPES[str[0]] || isNaN(str[0]) ? CH : NU);
+    return str
+        .split('')
+        .reduce(
+            ({ stack, tmp, prevType }, ch) => {
+                const t = type(ch);
+                if (tmp && t !== prevType) {
+                    stack.push(tmp);
+                    tmp = '';
+                }
+                if (t === RB) {
+                    let str = '';
+                    let lb;
+                    while ((lb = stack.pop()) !== '[') str = `${lb}${str}`;
+                    stack.push(str.repeat(+stack.pop()));
+                } else if (t === LB) {
+                    stack.push('[');
+                } else {
+                    tmp += ch;
+                }
+                return { stack, tmp, prevType: t };
+            },
+            { stack: [], tmp: '', prevType: null },
+        )
+        .stack.join('');
 }
 ```
 
@@ -88,60 +87,60 @@ function convertString(str) {
  * 4) 括号未配对时抛出异常
  */
 function convertString(str) {
-  const TYPES = {
-    NU: 'NUMBER',
-    CH: 'CHAR',
-    LB: 'LEFT_BRACKET',
-    RB: 'RIGHT_BRACKET',
-    '[': 'LEFT_BRACKET',
-    ']': 'RIGHT_BRACKET',
-  };
+    const TYPES = {
+        NU: 'NUMBER',
+        CH: 'CHAR',
+        LB: 'LEFT_BRACKET',
+        RB: 'RIGHT_BRACKET',
+        '[': 'LEFT_BRACKET',
+        ']': 'RIGHT_BRACKET',
+    };
 
-  const { NU, CH, LB, RB } = TYPES;
-  const type = (str) => (TYPES[str[0]] || isNaN(str[0]) ? CH : NU);
-  const stack = [];
-  let tmp = '';
-  let prevType = null;
-  str.split('').forEach((ch) => {
-    const t = type(ch);
-    if (tmp && t !== prevType) {
-      stack.push(tmp);
-      tmp = '';
-    }
-    // 出栈配对
-    if (t === RB) {
-      let str = '';
-      let lb = stack.pop();
-      while (lb !== '[') {
-        if (!lb) throw new Error('括号未配对');
-        str = `${lb}${str}`;
-        lb = stack.pop();
-      }
-      const num = stack.pop();
-      if (+num >= 0) {
-        stack.push(str.repeat(+num)); // 正常情况. num是数字:  2[a] => aa
-      } else if (num === '[') {
-        stack.push('['); // 异常情况. num是左括号'[': [[a] => [a
-        stack.push(str);
-      } else if (num) {
-        stack.push(`${num}${str}`); // 异常情况. num是字母: a[b] => ab
-      } else {
-        stack.push(str); // 异常情况. num是undefined: '[b]' => 'b'
-      }
-    } else if (t === LB) {
-      stack.push('[');
-    } else {
-      tmp += ch;
-    }
-    prevType = t;
-  });
-  return stack.join('');
+    const { NU, CH, LB, RB } = TYPES;
+    const type = (str) => (TYPES[str[0]] || isNaN(str[0]) ? CH : NU);
+    const stack = [];
+    let tmp = '';
+    let prevType = null;
+    str.split('').forEach((ch) => {
+        const t = type(ch);
+        if (tmp && t !== prevType) {
+            stack.push(tmp);
+            tmp = '';
+        }
+        // 出栈配对
+        if (t === RB) {
+            let str = '';
+            let lb = stack.pop();
+            while (lb !== '[') {
+                if (!lb) throw new Error('括号未配对');
+                str = `${lb}${str}`;
+                lb = stack.pop();
+            }
+            const num = stack.pop();
+            if (+num >= 0) {
+                stack.push(str.repeat(+num)); // 正常情况. num是数字:  2[a] => aa
+            } else if (num === '[') {
+                stack.push('['); // 异常情况. num是左括号'[': [[a] => [a
+                stack.push(str);
+            } else if (num) {
+                stack.push(`${num}${str}`); // 异常情况. num是字母: a[b] => ab
+            } else {
+                stack.push(str); // 异常情况. num是undefined: '[b]' => 'b'
+            }
+        } else if (t === LB) {
+            stack.push('[');
+        } else {
+            tmp += ch;
+        }
+        prevType = t;
+    });
+    return stack.join('');
 }
 ```
 
 ## 思路
-思路
-括号匹配类型的问题，很适合用栈来解决
+
+思路括号匹配类型的问题，很适合用栈来解决
 
 从前往后遍历，遇到 \[0-9]\ ，判定为乘数，需要兼容多位数的场景，进行累加
 
@@ -149,7 +148,7 @@ function convertString(str) {
 
 遇到字母直接入栈
 
-遇到 ] 时，while 循环从栈中取值，直到取出的值类型为 number 类型，此时取到的temp为最小单位 [...] ，curr 为 [..] 之前的乘数
+遇到 ] 时，while 循环从栈中取值，直到取出的值类型为 number 类型，此时取到的 temp 为最小单位 [...] ，curr 为 [..] 之前的乘数
 
 将重复之后的字符串推进栈中，继续往后遍历
 
@@ -175,7 +174,7 @@ var decodeString = function (s) {
             if (i === 0 || /[0-9]/.test(s[i - 1])) {
                 times += item;
             } else {
-                times = item
+                times = item;
             }
         } else if (item === '[') {
             times && stack.push(Number(times));

@@ -1,15 +1,15 @@
-var StockSpanner = function() {
+var StockSpanner = function () {
     this.stack = [];
 };
 
-/** 
+/**
  * @param {number} price
  * @return {number}
  */
-StockSpanner.prototype.next = function(price) {
+StockSpanner.prototype.next = function (price) {
     this.stack.push(price);
     let sum = 0;
-    for (let i = this.stack.length- 1;i >= 0;i--) {
+    for (let i = this.stack.length - 1; i >= 0; i--) {
         if (this.stack[i] <= price) {
             sum++;
         } else {

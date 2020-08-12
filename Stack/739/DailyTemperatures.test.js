@@ -1,7 +1,16 @@
-const dailyTemperatures = require("./DailyTemperatures");
+const dailyTemperatures = require('./DailyTemperatures');
 
-describe("每日温度", () => {
-    test("dailyTemperatures", () => {
-        expect(dailyTemperatures([73, 74, 75, 71, 69, 72, 76, 73])).toEqual([1, 1, 4, 2, 1, 1, 0, 0])
+describe('每日温度', () => {
+    test('dailyTemperatures', () => {
+        expect(dailyTemperatures([73, 74, 75, 71, 69, 72, 76, 73])).toEqual([
+            1,
+            1,
+            4,
+            2,
+            1,
+            1,
+            0,
+            0,
+        ]);
     });
 });

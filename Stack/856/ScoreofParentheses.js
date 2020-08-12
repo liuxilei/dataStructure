@@ -1,18 +1,18 @@
 var scoreOfParentheses = function (S) {
     const stack = [];
-    for (let i = 0;i < S.length;i++) {
+    for (let i = 0; i < S.length; i++) {
         let item = S[i];
-        if (item === "(") {
+        if (item === '(') {
             stack.push(item);
         }
-        if (item === ")") {
+        if (item === ')') {
             let num = 0;
-            if (stack[stack.length - 1] === "(") {
+            if (stack[stack.length - 1] === '(') {
                 stack.pop();
                 stack.push(1);
             } else {
                 let temp = stack.pop();
-                while(temp !== "(") {
+                while (temp !== '(') {
                     num += temp;
                     temp = stack.pop();
                 }

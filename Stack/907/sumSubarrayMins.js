@@ -27,9 +27,9 @@ var sumSubarrayMins = function (A) {
         stack.push(i);
     }
 
-    for (let i = 0;i < A.length;i++) {
+    for (let i = 0; i < A.length; i++) {
         sum += (i - left[i]) * (right[i] - i) * A[i];
-        sum %= (1e9 + 7);
+        sum %= 1e9 + 7;
     }
     return sum;
 };

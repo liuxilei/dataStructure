@@ -1,22 +1,22 @@
 function ArrayList() {
     var array = [];
-    this.insert = function(item) {
+    this.insert = function (item) {
         array.push(item);
     };
 
-    this.toString = function() {
+    this.toString = function () {
         return array.join();
     };
 
-    var swap = function(index1, index2) {
+    var swap = function (index1, index2) {
         [array[index2], array[index1]] = [array[index1], array[index2]];
     };
 
     //冒泡排序 复杂度O(n^2)
-    this.bubbleSort = function() {
+    this.bubbleSort = function () {
         var length = array.length;
-        for (var i = 0;i < length;i++) {
-            for (var j = 0;j < length - 1;j++) {
+        for (var i = 0; i < length; i++) {
+            for (var j = 0; j < length - 1; j++) {
                 if (array[j] > array[j + 1]) {
                     swap(j, j + 1);
                 }
@@ -25,26 +25,26 @@ function ArrayList() {
     };
 
     //冒泡排序改进 复杂度O(n^2)
-    this.modifiedBubbleSort = function() {
+    this.modifiedBubbleSort = function () {
         var length = array.length;
-        for (var i = 0;i < length;i++) {
-            for (var j = 0;j < length - 1 - i;j++) {
+        for (var i = 0; i < length; i++) {
+            for (var j = 0; j < length - 1 - i; j++) {
                 if (array[j] > array[j + 1]) {
                     swap(j, j + 1);
                 }
             }
         }
-    }
+    };
 
     //选择排序 复杂度O(n^2)
-    this.selectionSort = function() {
+    this.selectionSort = function () {
         var length = array.length,
             indexMin;
         //控制比较的次数
-        for (var i = 0;i < length - 1;i++) {
+        for (var i = 0; i < length - 1; i++) {
             indexMin = i;
             //从i位置起，取最小值，互换两个位置到i位置
-            for (var j = i;j < length;j++) {
+            for (var j = i; j < length; j++) {
                 if (array[indexMin] > array[j]) {
                     indexMin = j;
                 }
@@ -56,10 +56,10 @@ function ArrayList() {
     };
 
     //插入排序
-    this.insertionSort = function() {
+    this.insertionSort = function () {
         var length = array.length;
-            j, temp;
-        for (var i = 1;i < length;i++) {
+        j, temp;
+        for (var i = 1; i < length; i++) {
             j = i;
             temp = array[i];
             while (j > 0 && array[j - 1] > temp) {
@@ -70,56 +70,56 @@ function ArrayList() {
         }
     };
 
-    var merge = function(left, right) {
+    var merge = function (left, right) {
         var result = [],
             il = 0,
             ir = 0;
-        while(il < left.length && ir < right.length) {
+        while (il < left.length && ir < right.length) {
             if (left[i] < right[ir]) {
                 result.push(left[il++]);
             } else {
                 result.push(right[ir++]);
             }
         }
-        while(il < left.length) {
+        while (il < left.length) {
             result.push(left[il++]);
         }
-        while(ir < right.length) {
+        while (ir < right.length) {
             result.push(right[ir++]);
         }
         return result;
     };
 
     //归并排序的辅助方法
-    var mergeSortRec = function(array) {
+    var mergeSortRec = function (array) {
         var length = array.length;
         if (length === 1) {
             return array;
         }
         var mid = Math.floor(length / 2);
-            left = array.slice(0, mid);
-            right = array.slice(mid, length);
+        left = array.slice(0, mid);
+        right = array.slice(mid, length);
         return merge(mergeSortRec(left), mergeSortRec(right));
     };
 
     //归并排序 复杂度O(nlog^n)
-    this.mergeSort = function() {
+    this.mergeSort = function () {
         array = mergeSortRec(array);
     };
 
-    var swapQuickStort = function(array, index1, index2) {
+    var swapQuickStort = function (array, index1, index2) {
         [array[index1], array[index2]] = [array[index2], array[index1]];
     };
 
-    var partition = function(array, left, right) {
+    var partition = function (array, left, right) {
         var pivot = array[Math.floor((right + left) / 2)],
             i = left,
             j = right;
-        while(i <= j) {
-            while(array[i] < pivot) {
+        while (i <= j) {
+            while (array[i] < pivot) {
                 i++;
             }
-            while(array[j] > pivot) {
+            while (array[j] > pivot) {
                 j--;
             }
             if (i <= j) {
@@ -131,7 +131,7 @@ function ArrayList() {
         return i;
     };
 
-    var quick = function(array, left, right) {
+    var quick = function (array, left, right) {
         var index;
         if (array.length > 1) {
             index = partition(array, left, right);
@@ -145,14 +145,14 @@ function ArrayList() {
     };
 
     //快速排序 复杂度O(nlog^n)性能最好
-    this.quickSort = function() {
+    this.quickSort = function () {
         quick(array, 0, array.length - 1);
     };
 }
 
 function createNonSortedArray(size) {
     var array = new ArrayList();
-    for (var i = size;i > 0;i--) {
+    for (var i = size; i > 0; i--) {
         array.insert(i);
     }
     return array;
