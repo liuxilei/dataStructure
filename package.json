@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test": "jest",
-    "commit": "git-cz"
+    "commit": "git-cz",
+    "prettier": "prettier --write "
   },
   "repository": {
     "type": "git",
@@ -24,6 +25,15 @@
   },
   "devDependencies": {
     "cz-conventional-changelog": "^3.1.0",
-    "jest": "^26.0.1"
+    "jest": "^26.0.1",
+    "prettier": "2.0.5"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,css,md}": "prettier --write"
   }
 }
