@@ -3,20 +3,27 @@
  * @return {boolean}
  */
 var isValid = function(s) {
-    const stringObj = {
-        "(": ")",
-        "{": "}",
-        "[": "]"
-    };
+    const length = s.length;
+    if (length % 2 === 1) {
+        return false;
+    }
+    const hashObj = new Map([
+        [")", "("],
+        ["}", "{"],
+        ["]", "["]
+    ]);
     const stack = [];
-    for (let item of s) {
-        if (stringObj[stack[stack.length - 1]] === item) {
+    s.split("").forEach(char => {
+        if (hashObj.has(char)) {
+            if (!stack.length || stack[stack.length - 1] !== hashObj.get(char)) {
+                return false;
+            }
             stack.pop();
         } else {
-            stack.push(item);
+            stack.push(char);
         }
-    }
-    return stack.length === 0;
+    });
+    return !stack.length;
 };
 
 module.exports = isValid;
