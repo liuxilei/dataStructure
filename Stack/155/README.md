@@ -70,51 +70,47 @@ Methods pop, top and getMin operations will always be called on `non-empty` stac
 /**
  * initialize your data structure here.
  */
-var MinStack = function () {
+var MinStack = function() {
     this.stack = [];
 };
 
-/**
+/** 
  * @param {number} x
  * @return {void}
  */
-MinStack.prototype.push = function (x) {
+MinStack.prototype.push = function(x) {
     this.stack.push(x);
 };
 
 /**
  * @return {void}
  */
-MinStack.prototype.pop = function () {
-    if (this.stack.length > 0) {
-        return this.stack.pop();
-    } else {
-        return null;
+MinStack.prototype.pop = function() {
+    if (this.stack.length) {
+        this.stack.pop();
     }
 };
 
 /**
  * @return {number}
  */
-MinStack.prototype.top = function () {
-    if (this.stack.length > 0) {
-        return this.stack[this.stack.length - 1];
-    } else {
-        return null;
+MinStack.prototype.top = function() {
+    let result;
+    if (this.stack.length) {
+        result = this.stack[this.stack.length - 1]; 
     }
+    return result;
 };
 
 /**
  * @return {number}
  */
-MinStack.prototype.getMin = function () {
-    if (this.stack.length > 0) {
-        return this.stack.reduce((value, currentVlue) =>
-            value > currentVlue ? currentVlue : value,
-        );
-    } else {
-        return null;
+MinStack.prototype.getMin = function() {
+    let min;
+    if (this.stack.length) {
+        min = Math.min(...this.stack); 
     }
+    return min;
 };
 ```
 
