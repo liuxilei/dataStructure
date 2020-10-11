@@ -113,30 +113,24 @@ var removeOuterParentheses = function (S) {
 ### others
 
 ```javascript
-var removeOuterParentheses = function (S) {
-    let len = S.length,
-        l = 0,
-        r = 0,
-        ret = '';
-    let stack = [];
-    for (let i = 0; i < len; i++) {
-        if (stack.length == 0) {
-            stack.push(S[i]);
-            l = i;
-        } else {
-            if (S[i] == ')') {
-                stack.pop();
-                if (stack.length == 0) {
-                    r = i;
-                    // substring(start,end)  切割的为[start,end)
-                    ret += S.substring(l + 1, r);
-                }
-            } else {
-                stack.push(S[i]);
-            }
-            // console.log(stack)
+/**
+ * @param {string} S
+ * @return {string}
+ */
+var removeOuterParentheses = function(S) {
+    let result = "";
+    const stack = [];
+    for (let item of S) {
+        if (item === ")") {
+            stack.pop();
         }
+        if (stack.length) {
+            result += item;
+        }
+        if (item === "(") {
+            stack.push(item);
+        } 
     }
-    return ret;
+    return result;
 };
 ```
