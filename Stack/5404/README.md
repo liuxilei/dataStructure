@@ -124,3 +124,23 @@ var buildArray = function (target, n) {
 ### 解题思路
 
 按顺序从 1 开始 push 一直到目标数组最大值的，如果哪个值与目标位置不一致，说明该位置是需要两次操作，push+pop 的，所以只要把对应位置的 push 改为 push,pop 即可。
+
+### others
+
+```javascript
+var buildArray = function(target, n) {
+    const stack = [];
+    const max = target[target.length - 1];
+    for (let i = 1;i <= max;i++) {
+        if (target.includes(i)) {
+            stack.push("Push")
+        } else {
+            stack.push("Push", "Pop");
+        }
+    }
+    return stack;
+};
+```
+
+### 解题思路
+与n无关，判断`target`是否包含遍历的值，不包含则向结果栈中插入`Push、Pop`操作，不然插入`Push`。
