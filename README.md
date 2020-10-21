@@ -15,7 +15,7 @@
 | 496 | [Next Greater Element I(下一个更大元素 I)](./Stack/496/README.md) | 简单 |
 | 232 | [Implement Queue using Stacks(用栈实现队列)](./Stack/232/README.md) | 简单 |
 | 844 | [Backspace String Compare(比较含退格的字符串)](./Stack/844/README.md) | 简单 |
-| 5404 | [Build an Array With Stack Operations(用栈操作构建数组)](./Stack/5404/README.md) | 简单 |
+| 1441 | [Build an Array With Stack Operations(用栈操作构建数组)](./Stack/5404/README.md) | 简单 |
 | 面试题 59-I | [滑动窗口最大值](./Stack/59-I/README.md) | 简单 |
 | 71 | [Simplify Path(简化路径)](./Stack/71/README.md) | 中等 |
 | 921 | [Minimum Add to Make Parentheses Valid(使括号有效的最少添加)](./Stack/921/README.md) | 中等 |
