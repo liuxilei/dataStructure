@@ -16,7 +16,7 @@
 | 232 | [Implement Queue using Stacks(用栈实现队列)](./Stack/232/README.md) | 简单 |
 | 844 | [Backspace String Compare(比较含退格的字符串)](./Stack/844/README.md) | 简单 |
 | 1441 | [Build an Array With Stack Operations(用栈操作构建数组)](./Stack/1441/README.md) | 简单 |
-| 面试题 59-I | [滑动窗口最大值](./Stack/59-I/README.md) | 简单 |
+| 1544 | [整理字符串](./Stack/1544/README.md) | 简单 |
 | 71 | [Simplify Path(简化路径)](./Stack/71/README.md) | 中等 |
 | 921 | [Minimum Add to Make Parentheses Valid(使括号有效的最少添加)](./Stack/921/README.md) | 中等 |
 | 1381 | [Design a Stack With Increment Operation(设计一个支持增量操作的栈)](./Stack/1381/README.md) | 中等 |
@@ -42,3 +42,9 @@
 | 456 | [132 Pattern(132 模式)](./Stack/456/README.md) | 中等 |
 | 面试题 17.21 | [Volume of Histogram LCCI(直方图的水量)](./Stack/17.21/README.md) | 困难 |
 | 42 | [ Trapping Rain Water(接雨水)](./Stack/42/README.md) | 困难 |
+
+### 队列 
+
+| 序号 | 题目 | 备注 |
+| :-: | :-- | :-: |
+| 剑指Offer 59-I | [滑动窗口最大值](./Stack/59-I/README.md) | 简单 |

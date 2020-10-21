@@ -20,7 +20,7 @@ MinStack.prototype.push = function(x) {
  */
 MinStack.prototype.pop = function() {
     if (this.stack.length) {
-        this.stack.pop();
+        return this.stack.pop();
     }
 };
 
