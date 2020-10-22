@@ -17,6 +17,7 @@
 | 844 | [Backspace String Compare(比较含退格的字符串)](./Stack/844/README.md) | 简单 |
 | 1441 | [Build an Array With Stack Operations(用栈操作构建数组)](./Stack/1441/README.md) | 简单 |
 | 1544 | [整理字符串](./Stack/1544/README.md) | 简单 |
+| 1598 | [文件夹操作日志搜集器](./Stack/1598/README.md) | 简单 |
 | 71 | [Simplify Path(简化路径)](./Stack/71/README.md) | 中等 |
 | 921 | [Minimum Add to Make Parentheses Valid(使括号有效的最少添加)](./Stack/921/README.md) | 中等 |
 | 1381 | [Design a Stack With Increment Operation(设计一个支持增量操作的栈)](./Stack/1381/README.md) | 中等 |
